@@ -4,7 +4,7 @@ bin/
 int/
 
 # Files
-*.user
+*.vcxproj.user
 *.sln
 *.vcxproj.filters
 *.vcxproj
