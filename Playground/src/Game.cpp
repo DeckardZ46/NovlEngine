@@ -9,7 +9,6 @@ public:
 
 	}
 
-	
 };
 
 Novl::Application* Novl::CreateApplication() {

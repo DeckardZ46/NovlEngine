@@ -5,3 +5,6 @@ int/
 
 # Files
 *.user
+*.sln
+*.vcxproj.filters
+*.vcxproj
