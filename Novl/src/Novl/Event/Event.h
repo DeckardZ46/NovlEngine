@@ -1,5 +1,5 @@
 #pragma once
-#include "../Core.h"
+#include "Novl/Core.h"
 
 #include <string>
 #include <functional>
@@ -65,4 +65,8 @@ namespace Novl {
 	private:
 		Event& m_Event;
 	};
+
+	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+		return os << e.ToString();
+	}
 }

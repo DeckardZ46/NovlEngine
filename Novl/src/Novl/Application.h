@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 
+
 namespace Novl{
 	class NOVL_API Application
 	{

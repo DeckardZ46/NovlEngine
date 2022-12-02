@@ -23,7 +23,7 @@ project "Novl"
 	}
 
 	includedirs{
-
+		"%{prj.name}/src"
 	}
 
 	filter "system:windows"

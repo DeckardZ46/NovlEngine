@@ -1,4 +1,6 @@
 #include "Application.h"
+#include "Novl/Event/MouseEvent.h"
+#include <iostream>
 
 namespace Novl {
 	Application::Application() {
@@ -10,6 +12,7 @@ namespace Novl {
 	}
 
 	void Application::Run() {
-		
+		MouseMovedEvent m(1, 2);
+		std::cout << m.GetName() << " " << m.GetX() << "," << m.GetY() << std::endl;
 	}
 }
