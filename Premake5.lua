@@ -17,6 +17,9 @@ project "Novl"
 	targetdir ("bin/" .. outputdir .."/%{prj.name}")
 	objdir ("int/" .. outputdir .."/%{prj.name}")
 
+	pchheader "pch.h"
+	pchsource "Novl/src/pch.cpp"
+
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"

@@ -1,6 +1,6 @@
+#include "pch.h"
 #include "Application.h"
 #include "Event/MouseEvent.h"
-#include <iostream>
 
 namespace Novl {
 	Application::Application() {
@@ -12,6 +12,7 @@ namespace Novl {
 	}
 
 	void Application::Run() {
+		// test event system
 		MouseMovedEvent m(1, 2);
 		std::cout << m.GetName() << " " << m.GetX() << "," << m.GetY() << std::endl;
 	}
