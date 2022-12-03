@@ -2,8 +2,9 @@
 // For Applications importing
 #include<stdio.h>
 
-#include "Novl/Core.h"
+#include "Application.h"
+#include "Log.h"
 
-#include "Novl/Application.h"
-
-#include "Novl/Entry.h"
+//---------Entry-----------
+#include "Entry.h"
+//-------------------------

@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Novl/Event/MouseEvent.h"
+#include "Event/MouseEvent.h"
 #include <iostream>
 
 namespace Novl {

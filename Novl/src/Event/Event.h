@@ -1,5 +1,5 @@
 #pragma once
-#include "Novl/Core.h"
+#include "Core.h"
 
 #include <string>
 #include <functional>

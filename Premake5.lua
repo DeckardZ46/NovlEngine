@@ -23,7 +23,8 @@ project "Novl"
 	}
 
 	includedirs{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+		"Libs/spdlog/include"
 	}
 
 	filter "system:windows"
@@ -68,7 +69,8 @@ project "Playground"
 	}
 
 	includedirs{
-		"Novl/src"
+		"Novl/src",
+		"Libs/spdlog/include"
 	}
 
 	links{
