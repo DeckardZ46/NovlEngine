@@ -9,6 +9,12 @@ workspace "Novl"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Libs/glfw/Include"
+
+include "Libs/glfw"
+
 project "Novl"
 	location "Novl"
 	kind "SharedLib"
@@ -27,8 +33,15 @@ project "Novl"
 
 	includedirs{
 		"%{prj.name}/src",
-		"Libs/spdlog/include"
+		"Libs/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
+
+	links{
+		"GLFW",
+		"opengl32.lib"
+	}
+
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -37,6 +50,7 @@ project "Novl"
 
 		defines{
 			"NOVL_PLATFORM_WINDOWS",
+			"NOVL_ENABLE_ASSERTS",
 			"NOVL_BUILD_DLL"
 		}
 
