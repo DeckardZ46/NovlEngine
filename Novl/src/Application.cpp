@@ -17,9 +17,14 @@ namespace Novl {
 	}
 
 	void Application::OnEvent(Event& e) {
-		NOVL_CORE_INFO("{0}", e);
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClosed));
+
+		// In Hazel tutorial it was "e" not "e.ToString()", but it causes terrible compile error somehow
+		NOVL_CORE_TRACE("{0}", e.ToString());
 	}
 
+	
 	void Application::Run() {
 		while (m_Running) {
 			glClearColor(1, 0, 1, 1);
@@ -27,4 +32,10 @@ namespace Novl {
 			m_Window->OnUpdate();
 		}
 	}
+
+	bool Application::OnWindowClosed(WindowCloseEvent& e) {
+		m_Running = false;
+		return true;
+	}
+
 }

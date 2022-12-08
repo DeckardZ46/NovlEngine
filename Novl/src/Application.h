@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "Event/ApplicationEvent.h"
 
 namespace Novl{
 	class NOVL_API Application
@@ -13,6 +14,9 @@ namespace Novl{
 
 		void OnEvent(Event& e);
 	private:
+
+		bool OnWindowClosed(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 	};

@@ -29,4 +29,4 @@ namespace Novl {
 #define NOVL_INFO(...)		::Novl::Log::GetClientLogger()->info(__VA_ARGS__)
 #define NOVL_WARN(...)		::Novl::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define NOVL_ERR(...)		::Novl::Log::GetClientLogger()->error(__VA_ARGS__)
-#define NOVL_FATAL(...)		::Novl::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define NOVL_FATAL(...)		::Novl::Log::GetClientLogger()->critical(__VA_ARGS__) // fetal->critical
