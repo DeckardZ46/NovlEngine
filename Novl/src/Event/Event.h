@@ -14,7 +14,7 @@ namespace Novl {
 
 	enum EventCategory {
 		None = 0,
-		EventCategoryApplication = BIT(0),
+		EventCategoryApplication = (0),
 		EventCategoryInput = BIT(1),
 		EventCategoryKeyBoard = BIT(2),
 		EventCategoryMouse = BIT(3),
@@ -25,7 +25,7 @@ namespace Novl {
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
-
+	
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	class NOVL_API Event {
@@ -39,8 +39,8 @@ namespace Novl {
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
+
+		bool handled = false;
 	};
 
 	class EventDispatcher {
@@ -55,7 +55,7 @@ namespace Novl {
 		template<typename T>
 		bool Dispatch(EventFn<T> func) {
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-				m_Event.m_Handled = func(*(T*)&m_Event); // black magic???
+				m_Event.handled = func(*(T*)&m_Event); // black magic???
 				return true;
 			}
 			return false;

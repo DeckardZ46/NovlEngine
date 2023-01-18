@@ -60,14 +60,17 @@ project "Novl"
 
 	filter "configurations:Debug"
 		defines "NOVL_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NOVL_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NOVL_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Playground"
@@ -105,12 +108,15 @@ project "Playground"
 		
 	filter "configurations:Debug"
 		defines "NOVL_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NOVL_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NOVL_DIST"
+		buildoptions "/MD"
 		optimize "On"
