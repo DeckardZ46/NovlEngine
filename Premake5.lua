@@ -11,9 +11,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Libs/glfw/Include"
+IncludeDir["glfw"] = "Libs/glfw/include"
+IncludeDir["glad"] = "Libs/glad/include"
 
 include "Libs/glfw"
+include "Libs/glad"
 
 project "Novl"
 	location "Novl"
@@ -34,11 +36,13 @@ project "Novl"
 	includedirs{
 		"%{prj.name}/src",
 		"Libs/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.glfw}",
+		"%{IncludeDir.glad}"
 	}
 
 	links{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 

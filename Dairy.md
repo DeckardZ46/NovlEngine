@@ -11,3 +11,8 @@ https://github.com/TheCherno/Hazel/commits/master?after=f8f8e3089b47c8371dc61448
 Bug fixed.
 
 通过event dispatcher分配了WindowCloseEvent来示例如何使用event dispatcher，并且创建相应的响应函数来做出动作
+
+>## 2023/01/18
+Layers done.
+
+添加了Layers类，在Application runtime中有多层layer来处理event和渲染。

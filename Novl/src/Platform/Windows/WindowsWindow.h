@@ -21,7 +21,7 @@ namespace Novl {
 
 	private:
 		virtual void Init(const WindowProps& props);
-		virtual void Shutdown();
+		virtual void Shutdown(); 
 
 	private:
 		GLFWwindow* m_Window;
