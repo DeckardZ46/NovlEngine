@@ -5,6 +5,8 @@
 #include "Event/MouseEvent.h"
 #include "Event/keyEvent.h"
 
+#include <glad/glad.h>
+
 namespace Novl {
 	static bool s_GLFWInitialized = false;
 
@@ -40,6 +42,8 @@ namespace Novl {
 
 		m_Window = glfwCreateWindow((int)props.width, (int)props.height, m_Data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int stat = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		NOVL_CORE_ASSERT(stat, "Failed to initialize GLAD!");
 		glfwSetWindowUserPointer(m_Window,&m_Data);
 		SetVSync(true);	// always be true;
 

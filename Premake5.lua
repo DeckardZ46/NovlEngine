@@ -55,7 +55,8 @@ project "Novl"
 		defines{
 			"NOVL_PLATFORM_WINDOWS",
 			"NOVL_ENABLE_ASSERTS",
-			"NOVL_BUILD_DLL"
+			"NOVL_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands{
