@@ -16,3 +16,5 @@ Bug fixed.
 Layers done.
 
 添加了Layers类，在Application runtime中有多层layer来处理event和渲染。
+hazel的commit页数标签：
+https://github.com/TheCherno/Hazel/commits/master?before=f8f8e3089b47c8371dc61448c3d47d43cad31079+280&branch=master&qualified_name=refs%2Fheads%2Fmaster

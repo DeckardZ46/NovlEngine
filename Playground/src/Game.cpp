@@ -24,6 +24,7 @@ class Game :public Novl::Application {
 public:
 	Game() {
 		PushLayer(new PlaygroundLayer());
+		PushOverlay(new Novl::ImGuiLayer());
 	}
 
 	~Game() {

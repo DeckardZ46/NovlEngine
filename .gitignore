@@ -9,3 +9,6 @@ int/
 *.sln
 *.vcxproj.filters
 *.vcxproj
+
+Dairy.md
+Note.md
