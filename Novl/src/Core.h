@@ -2,6 +2,8 @@
 
 #define BIT(x) (1 << x)
 
+#define NOVL_BIND_EVENT_FN(fn) std::bind(&fn,this,std::placeholders::_1)
+
 #ifdef NOVL_PLATFORM_WINDOWS
 	#ifdef NOVL_BUILD_DLL
 		#define NOVL_API __declspec(dllexport)

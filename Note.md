@@ -8,7 +8,7 @@
     - override关键字
     - enum class
     - const & static
-    - unique_ptrF
+    - unique_ptr
     - __debugbreak()
     - std::bind()
     - std::placeholders
