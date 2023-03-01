@@ -23,6 +23,7 @@ project "Novl"
 	location "Novl"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .."/%{prj.name}")
 	objdir ("int/" .. outputdir .."/%{prj.name}")
@@ -53,12 +54,10 @@ project "Novl"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
 			"NOVL_PLATFORM_WINDOWS",
-			"NOVL_ENABLE_ASSERTS",
 			"NOVL_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -69,24 +68,24 @@ project "Novl"
 
 	filter "configurations:Debug"
 		defines "NOVL_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NOVL_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NOVL_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Playground"
 	location "Playground"
 	kind "ConsoleApp"
-
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -108,7 +107,6 @@ project "Playground"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
@@ -117,15 +115,15 @@ project "Playground"
 		
 	filter "configurations:Debug"
 		defines "NOVL_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "NOVL_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NOVL_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

@@ -19,3 +19,5 @@
 
 ### Event System和Windows关联
 
+### Premake5 中的staticruntime on/off
+
