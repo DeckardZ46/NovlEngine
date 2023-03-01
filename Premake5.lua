@@ -15,9 +15,11 @@ IncludeDir["glfw"] = "Libs/glfw/include"
 IncludeDir["glad"] = "Libs/glad/include"
 IncludeDir["ImGui"] = "Libs/imgui"
 
-include "Libs/glfw"
-include "Libs/glad"
-include "Libs/imgui"
+group "Dependencies"
+	include "Libs/glfw"
+	include "Libs/glad"
+	include "Libs/imgui"
+group ""
 
 project "Novl"
 	location "Novl"
@@ -63,7 +65,7 @@ project "Novl"
 		}
 
 		postbuildcommands{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .."/Playground")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .."/Playground/\"")
 		}
 
 	filter "configurations:Debug"
