@@ -2,7 +2,7 @@
 
 ---
 ### week1 
-- 建立构建系统，集成OpenGL/imgui/spdlog，且可以用XMake构建工程，实践VScode + XMake工作流
+- 建立构建系统，集成OpenGL/imgui/spdlog/FMOD/Jolt，且可以用Xmake构建工程，实践VScode + Xmake工作流
 
 - precompiled header正常使用
 
