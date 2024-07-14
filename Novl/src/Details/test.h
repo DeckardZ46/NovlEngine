@@ -1,12 +1,38 @@
-#if defined(_WIN32)
-#   define __export         __declspec(dllexport)
-#elif defined(__GNUC__) && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3))
-#   define __export         __attribute__((visibility("default")))
-#else
-#   define __export
+#include <iostream>
+
+#ifdef NOVL_PLAT_WINDOWS
+    #ifdef NOVL_BUILD_DLL
+        #define NOVL_API __declspec(dllexport)
+    #else
+        #define NOVL_API __declspec(dllimport)
+    #endif
+#else 
+    #define NOVL_API
 #endif
 
-__export int add(int a, int b);
 
 
+class NOVL_API Test
+{
+private:
+    /* data */
+public:
+    Test(/* args */);
+    ~Test();
 
+    void test1()
+    {
+        std::cout << "test xmake proj" << std::endl;
+    }
+
+    void test2();
+    
+};
+
+Test::Test(/* args */)
+{
+}
+
+Test::~Test()
+{
+}

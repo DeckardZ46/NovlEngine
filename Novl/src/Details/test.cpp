@@ -1,5 +1,5 @@
 #include "test.h"
 
-int add(int a, int b) {
-    return a + b;
+void Test::test2(){
+    std::cout<<"hello test2"<<std::endl;
 }

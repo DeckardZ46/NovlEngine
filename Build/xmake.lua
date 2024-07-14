@@ -29,12 +29,12 @@ set_objectdir("$(buildir)/$(mode)/$(plat)_$(arch)/obj")
 -- supported platform
 set_allowedplats("windows")
 set_allowedarchs("windows|x64")
-
+                    
 -- platform specified settings
-option("plat_windows")
+if is_plat("windows") then 
     add_defines("NOVL_PLAT_WINDOWS","NOVL_BUILD_DLL")
     set_languages("cxx20")
-option_end()                       
+end
 
 ---------- NOVL RUNTIME -------------
 target("Novl")
@@ -46,11 +46,6 @@ target("Novl")
 
     -- link to target
     -- ...
-
-    -- platform specified settings
-    if is_plat("windows") then 
-        add_options("plat_windows")
-    end
 
 target_end()
 
@@ -66,8 +61,4 @@ target("Novl Editor")
     -- link to target
     -- ...
 
-    -- platform specified settings
-    if is_plat("windows") then 
-        add_options("plat_windows")
-    end
 target_end()
