@@ -10,29 +10,19 @@
     #define NOVL_API
 #endif
 
-
-
 class NOVL_API Test
 {
 private:
     /* data */
 public:
-    Test(/* args */);
-    ~Test();
+    Test(/* args */){};
+    ~Test(){};
 
     void test1()
     {
-        std::cout << "test xmake proj" << std::endl;
+        std::cout << "hello xmake" << std::endl;
     }
 
     void test2();
     
 };
-
-Test::Test(/* args */)
-{
-}
-
-Test::~Test()
-{
-}
