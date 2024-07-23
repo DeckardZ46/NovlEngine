@@ -11,8 +11,6 @@ set_project("Novl Engine")
 set_version("0.0.1")
 set_xmakever("2.9.3")
 
-includes("xmakeUtils.lua")
-
 -- build mode
 set_allowedmodes("debug","release")
 add_rules("mode.debug", "mode.release")
@@ -34,6 +32,7 @@ set_allowedarchs("windows|x64")
 if is_plat("windows") then 
     add_defines("NOVL_PLAT_WINDOWS","NOVL_BUILD_DLL")
     set_languages("cxx20")
+    set_runtimes("MD")
 end
 
 ---------- NOVL RUNTIME -------------
@@ -44,8 +43,17 @@ target("Novl")
     set_pcxxheader("../Novl/src/pch.h")
     add_files("../Novl/**.cpp")
 
+    -- add includes
+    add_includedirs("../Novl/src", "../Libs/include")
+
     -- link to target
-    -- ...
+    add_linkdirs("../Libs/bin/$(plat)")
+    add_links("glad","glfw3")
+
+    -- platform related
+    if is_plat("windows") then 
+        add_syslinks("opengl32","user32","Gdi32","Shell32")
+    end 
 
 target_end()
 
@@ -56,7 +64,9 @@ target("Novl Editor")
 
     -- add file to target
     add_files("../NovlEditor/**.cpp")
-    add_includedirs("../Novl/src/Details")
+
+    -- add includes
+    add_includedirs("../Novl/src", "../Libs/include")
 
     -- link to target
     -- ...

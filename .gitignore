@@ -2,9 +2,6 @@
 .vs/
 .vscode/
 .xmake/
-bin/
-bin-int/
-int/
 
 # Files
 *.sln
