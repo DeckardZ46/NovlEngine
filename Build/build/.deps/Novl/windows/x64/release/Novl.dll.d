@@ -1,0 +1,25 @@
+{
+    files = {
+        [[build\release\windows_x64\obj\Novl\windows\x64\release\__\Novl\src\Details\test.cpp.obj]],
+        [[build\release\windows_x64\obj\Novl\windows\x64\release\gens\__\Novl\src\cxx\pch.h.pch.obj]]
+    },
+    values = {
+        [[C:\Users\decka\Softwares\VisualStudio\2022\VC\Tools\MSVC\14.39.33519\bin\HostX64\x64\link.exe]],
+        {
+            "-nologo",
+            "-machine:x64",
+            [[-libpath:..\Libs\glad\bin\windows\x64]],
+            [[-libpath:..\Libs\glfw3\bin\windows\x64]],
+            [[-libpath:..\Libs\ImGui\bin\windows\x64]],
+            "/opt:ref",
+            "/opt:icf",
+            "glad.lib",
+            "glfw3.lib",
+            "ImGui.lib",
+            "opengl32.lib",
+            "user32.lib",
+            "Gdi32.lib",
+            "Shell32.lib"
+        }
+    }
+}

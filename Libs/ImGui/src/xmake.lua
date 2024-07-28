@@ -1,0 +1,6 @@
+target("ImGui")
+    set_runtimes("MD")
+    set_kind("static")
+    add_includedirs("../include", "../../glfw3/include")
+    add_files("**.cpp")
+target_end()

@@ -27,7 +27,7 @@ set_objectdir("$(buildir)/$(mode)/$(plat)_$(arch)/obj")
 -- supported platform
 set_allowedplats("windows")
 set_allowedarchs("windows|x64")
-                    
+
 -- platform specified settings
 if is_plat("windows") then 
     add_defines("NOVL_PLAT_WINDOWS","NOVL_BUILD_DLL")
@@ -44,11 +44,26 @@ target("Novl")
     add_files("../Novl/**.cpp")
 
     -- add includes
-    add_includedirs("../Novl/src", "../Libs/include")
-
+    add_includedirs("../Novl/src")
+    
     -- link to target
-    add_linkdirs("../Libs/bin/$(plat)")
-    add_links("glad","glfw3")
+    -- static
+    libs = {"glad","glfw3","ImGui"}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+        add_linkdirs(string.format("../Libs/%s/bin/$(plat)/$(arch)",lib))
+        add_links(lib)
+    end
+    
+    -- shared
+    libs = {}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+        add_linkdirs(string.format("../Libs/%s/bin/$(plat)/$(arch)",lib))
+        add_links(string.format("%sdll",lib))
+    end
 
     -- platform related
     if is_plat("windows") then 
@@ -66,9 +81,8 @@ target("Novl Editor")
     add_files("../NovlEditor/**.cpp")
 
     -- add includes
-    add_includedirs("../Novl/src", "../Libs/include")
-
+    add_includedirs("../Novl/src", "../NovlEditor/src")
+    
     -- link to target
-    -- ...
 
 target_end()
