@@ -57,7 +57,7 @@ target("Novl")
     end
     
     -- shared
-    libs = {}
+    libs = {"fmod"}
 
     for _, lib in ipairs(libs) do
         add_includedirs(string.format("../Libs/%s/include",lib))
@@ -84,5 +84,6 @@ target("Novl Editor")
     add_includedirs("../Novl/src", "../NovlEditor/src")
     
     -- link to target
-
+    -- ...
+    
 target_end()

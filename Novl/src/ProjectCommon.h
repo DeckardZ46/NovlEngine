@@ -6,4 +6,5 @@
     #endif
 #else 
     #define NOVL_API
+    #error Unsupported Platform!
 #endif

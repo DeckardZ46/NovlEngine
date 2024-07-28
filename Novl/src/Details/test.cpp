@@ -5,6 +5,8 @@
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
+#include <fmod.h>
+#include <fmod.hpp>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
@@ -12,6 +14,18 @@ void Test::test()
 {
     std::cout << "hello Novl" << std::endl;
 
+    /*
+        FMOD TEST
+    */
+    // init fmod
+    FMOD::System *system;
+    FMOD::Sound *sound;
+
+    auto res = FMOD::System_Create(&system);
+
+    /*
+        OpenGL glad & glfw TEST
+    */
     // init glfw
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

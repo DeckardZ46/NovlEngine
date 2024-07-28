@@ -1,19 +1,9 @@
 # Plan
 
 ---
-### week1 
-- 建立构建系统，集成OpenGL/imgui/spdlog/FMOD/Jolt/Freetype，且可以用Xmake构建工程，实践VScode + Xmake工作流
+## todo
+- spdlog print inside ImGui
+- ImGui using FreeType to load ftt
 
-- precompiled header正常使用
-
-- 写第一篇知乎blog
-
-### week2 
-- 梳理项目结构，各部分架构设计
-
-- 尝试开始添加渲染模块
-
-### week3 
-- **must** 开始进行渲染模块可视化在editor中
-
-- 实现PBR
+## Next Week
+- 
