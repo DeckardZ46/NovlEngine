@@ -48,7 +48,7 @@ target("Novl")
     
     -- link to target
     -- static
-    libs = {"glad","glfw3","ImGui"}
+    libs = {"glad","glfw3","ImGui","Jolt"}
 
     for _, lib in ipairs(libs) do
         add_includedirs(string.format("../Libs/%s/include",lib))
@@ -69,6 +69,9 @@ target("Novl")
     if is_plat("windows") then 
         add_syslinks("opengl32","user32","Gdi32","Shell32")
     end 
+
+    -- Third party related defines
+    add_defines("JPH_OBJECT_STREAM")
 
 target_end()
 

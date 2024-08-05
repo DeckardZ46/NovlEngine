@@ -10,4 +10,5 @@ public:
     ~Test(){};
 
     void test();
+    void helloJolt();
 };
