@@ -8,3 +8,8 @@
     #define NOVL_API
     #error Unsupported Platform!
 #endif
+
+// Platform specific settings
+#ifdef NOVL_PLAT_WINDOWS
+    #include <Windows.h>
+#endif

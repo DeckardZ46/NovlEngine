@@ -47,6 +47,13 @@ target("Novl")
     add_includedirs("../Novl/src")
     
     -- link to target
+    -- header only
+    libs = {"spdlog"}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+    end
+
     -- static
     libs = {"glad","glfw3","ImGui","Jolt","freetype"}
 
@@ -63,6 +70,10 @@ target("Novl")
         add_includedirs(string.format("../Libs/%s/include",lib))
         add_linkdirs(string.format("../Libs/%s/bin/$(plat)/$(arch)",lib))
         add_links(string.format("%sdll",lib))
+
+        after_build(function(target)
+            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(buildir)/$(mode)/$(plat)_$(arch)")
+        end)
     end
 
     -- platform related

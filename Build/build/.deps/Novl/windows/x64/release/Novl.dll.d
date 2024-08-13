@@ -1,7 +1,7 @@
 {
     files = {
-        [[build\release\windows_x64\obj\Novl\windows\x64\release\__\Novl\src\Details\helloJolt.cpp.obj]],
-        [[build\release\windows_x64\obj\Novl\windows\x64\release\__\Novl\src\Details\test.cpp.obj]],
+        [[build\release\windows_x64\obj\Novl\windows\x64\release\__\Novl\src\Example\helloJolt.cpp.obj]],
+        [[build\release\windows_x64\obj\Novl\windows\x64\release\__\Novl\src\Example\test.cpp.obj]],
         [[build\release\windows_x64\obj\Novl\windows\x64\release\gens\__\Novl\src\cxx\pch.h.pch.obj]]
     },
     values = {

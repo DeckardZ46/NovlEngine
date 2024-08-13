@@ -13,6 +13,9 @@
         \"ImportedHeaderUnits\": []\
     }\
 }",
+    files = {
+        [[build\.gens\Novl\windows\x64\release\__\Novl\src\pch.h]]
+    },
     values = {
         [[C:\Users\decka\Softwares\VisualStudio\2022\VC\Tools\MSVC\14.39.33519\bin\HostX64\x64\cl.exe]],
         {
@@ -21,6 +24,7 @@
             "-std:c++20",
             "-MD",
             [[-I..\Novl\src]],
+            [[-I..\Libs\spdlog\include]],
             [[-I..\Libs\glad\include]],
             [[-I..\Libs\glfw3\include]],
             [[-I..\Libs\ImGui\include]],
@@ -37,8 +41,5 @@
             [[-Fpbuild\release\windows_x64\obj\Novl\windows\x64\release\gens\__\Novl\src\cxx\pch.h.pch]],
             "-DNDEBUG"
         }
-    },
-    files = {
-        [[build\.gens\Novl\windows\x64\release\__\Novl\src\pch.h]]
     }
 }
