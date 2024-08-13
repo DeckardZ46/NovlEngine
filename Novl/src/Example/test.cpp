@@ -11,7 +11,7 @@
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
-void Test::test()
+void Test::testLibs()
 {
     std::cout << "Hello Novl" << std::endl;
 

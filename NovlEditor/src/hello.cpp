@@ -5,6 +5,6 @@ int main(){
     //FreeConsole();
 #endif
     Test myTest;
-    myTest.helloJolt();
-    myTest.test();
+    myTest.testJolt();
+    myTest.testLibs();
 }

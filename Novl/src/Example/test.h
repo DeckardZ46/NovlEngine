@@ -9,6 +9,6 @@ public:
     Test(/* args */){};
     ~Test(){};
 
-    void test();
-    void helloJolt();
+    void testLibs();
+    void testJolt();
 };
