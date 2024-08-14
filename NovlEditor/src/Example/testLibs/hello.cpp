@@ -2,7 +2,7 @@
 
 int main(){
 #ifdef NOVL_PLAT_WINDOWS
-    //FreeConsole();
+    // FreeConsole();
 #endif
     Test myTest;
     myTest.testJolt();
