@@ -1,3 +1,11 @@
+/*
+< Novl Engine > RuntimeCommon.h
+Author: DeckardZ46
+Date: 2024/07/10
+Note: This is common settings for Novl Engine Runtime
+Codebase: https://github.com/DeckardZ46/NovlEngine
+*/
+
 #ifdef NOVL_PLAT_WINDOWS
     #ifdef NOVL_BUILD_DLL
         #define NOVL_API __declspec(dllexport)
@@ -9,7 +17,3 @@
     #error Unsupported Platform!
 #endif
 
-// Platform specific settings
-#ifdef NOVL_PLAT_WINDOWS
-    #include <Windows.h>
-#endif

@@ -10,6 +10,7 @@ Codebase: https://github.com/DeckardZ46/NovlEngine
 set_project("Novl Engine")
 set_version("0.0.1")
 set_xmakever("2.9.3")
+set_optimize("fastest")
 
 -- build mode
 set_allowedmodes("debug","release")
@@ -44,7 +45,7 @@ target("Novl")
     add_files("../Novl/**.cpp")
 
     -- add includes
-    add_includedirs("../Novl/src")
+    add_includedirs("../Novl/src",{public = true})
     
     -- link to target
     -- header only
@@ -65,6 +66,7 @@ target("Novl")
     
     -- shared
     libs = {"fmod"}
+
 
     for _, lib in ipairs(libs) do
         add_includedirs(string.format("../Libs/%s/include",lib))
@@ -95,9 +97,36 @@ target("Novl Editor")
     add_files("../NovlEditor/**.cpp")
 
     -- add includes
-    add_includedirs("../Novl/src", "../NovlEditor/src")
+    add_includedirs("../NovlEditor/src")
     
     -- link to target
-    -- ...
+    -- header only
+    libs = {"spdlog"}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+    end
+
+    -- static
+    libs = {"ImGui","freetype"}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+        add_linkdirs(string.format("../Libs/%s/bin/$(plat)/$(arch)",lib))
+        add_links(lib)
+    end
+    
+    -- shared
+    libs = {}
+
+    for _, lib in ipairs(libs) do
+        add_includedirs(string.format("../Libs/%s/include",lib))
+        add_linkdirs(string.format("../Libs/%s/bin/$(plat)/$(arch)",lib))
+        add_links(string.format("%sdll",lib))
+
+        after_build(function(target)
+            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(buildir)/$(mode)/$(plat)_$(arch)")
+        end)
+    end
     
 target_end()

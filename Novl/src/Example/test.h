@@ -1,4 +1,4 @@
-#include <ProjectCommon.h>
+#include <RuntimeCommon.h>
 #include <iostream>
 
 class NOVL_API Test

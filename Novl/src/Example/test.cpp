@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "test.h"
-#include "Core/Log/dear_sink.h"
+#include "Core/Log/DearSpdlog/dear_sink.h"
+#include "Core/Log/Log.h"
 #include <glad.h>
 #include <glfw3.h>
 #include <imgui.h>
@@ -12,9 +13,13 @@
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
+
 void Test::testLibs()
 {
     std::cout << "Hello Novl" << std::endl;
+    
+    int i = 256;
+    Novl::Log::Init();
 
     /*
         FMOD TEST
@@ -39,6 +44,15 @@ void Test::testLibs()
         dear_spdlog TEST
     */
     const auto ssink = dear_sink_mt();
+
+
+    spdlog::debug("Novl debug");
+    spdlog::info("Novl info");
+    spdlog::warn("Novl warn");
+    spdlog::error("Novl error");
+
+    NLOGD("NLOGD: i = {}",i);
+    ELOGI("ELOGI: i = {}",i);
 
     /*
         OpenGL glad & glfw & ImGui TEST
@@ -78,6 +92,7 @@ void Test::testLibs()
     ImGui::StyleColorsDark();
     io.Fonts->AddFontFromFileTTF("../../../../Assets/Fonts/Cousine-Regular.ttf",14);
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
+    
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
 
     // Setup Platform/Renderer backends
@@ -99,16 +114,6 @@ void Test::testLibs()
         /*
             ImGui as sink for spdlog
         */
-		ImGui::Begin("esfhie", nullptr);
-		ImGui::TextColored(ImColor(1.0f, 0.0f, 0.0f, 1.0f), "red");
-		ImGui::SameLine();
-		ImGui::TextColored(ImColor(0.0f, 1.0f, 0.0f, 1.0f), "green");
-		ImGui::End();
-        spdlog::debug("Novl debug");
-        spdlog::info("Novl info");
-        spdlog::warn("Novl warn");
-        spdlog::error("Novl error");
-        spdlog::critical("Novl critical");
 
 		ssink->draw_imgui();
 
