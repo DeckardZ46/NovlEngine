@@ -9,17 +9,10 @@
 /**
  *  STL 
  */
-#include <memory>
 #include <algorithm>
-#include <string>
-#include <vector>
-#include <map>
-#include <set>
-#include <unordered_map>
-#include <unordered_set>
-
 
 /**
  *  Inside Project
  */
-
+#include <Core/Types.h>
+#include <Core/Log/Log.h>

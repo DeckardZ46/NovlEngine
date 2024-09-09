@@ -1,22 +1,23 @@
-/*
-< Novl Engine > NovlEditor.cpp
-Author: DeckardZ46
-Date: 2024/07/10
-Note: This is entry point of Novl Engine Editor 
-Codebase: https://github.com/DeckardZ46/NovlEngine
-*/
+#include "NovlEditor.h"
 
-#include <Example/test.h>
+namespace Novl{
+    NovlEditor::NovlEditor(){
 
-// Platform specific settings
-#ifdef NOVL_PLAT_WINDOWS
-    #include <Windows.h>
-#endif
+    }
 
-int main(){
-#ifdef NOVL_PLAT_WINDOWS
-    FreeConsole();
-#endif
-    Test myTest;
-    myTest.testLibs();
+    NovlEditor::~NovlEditor(){
+
+    }
+
+    void NovlEditor::init(){
+
+    }
+
+    void NovlEditor::close(){
+
+    }
+
+    void NovlEditor::update(){
+        
+    }
 }

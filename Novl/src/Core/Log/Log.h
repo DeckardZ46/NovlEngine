@@ -1,3 +1,11 @@
+/**
+ * < Novl Engine > Log.h
+ * Author: DeckardZ46
+ * Date: 2024/07/10
+ * Note: This is logger for Novl Engine (including Runtime & Editor)
+ * Codebase: https://github.com/DeckardZ46/NovlEngine
+ */
+
 #pragma once
 #include <RuntimeCommon.h>
 #include <spdlog/spdlog.h>

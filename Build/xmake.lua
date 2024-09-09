@@ -10,13 +10,13 @@ Codebase: https://github.com/DeckardZ46/NovlEngine
 set_project("Novl Engine")
 set_version("0.0.1")
 set_xmakever("2.9.3")
-set_optimize("fastest")
 
 -- build mode
 set_allowedmodes("debug","release")
 add_rules("mode.debug", "mode.release")
 if is_mode("debug") then 
     add_defines("NOVL_DEBUG")
+    add_defines("NOVL_ENABLE_ASSERT")
 elseif is_mode("release") then 
     add_defines("NOVL_RELEASE")
 end
@@ -31,7 +31,7 @@ set_allowedarchs("windows|x64")
 
 -- platform specified settings
 if is_plat("windows") then 
-    add_defines("NOVL_PLAT_WINDOWS","NOVL_BUILD_DLL")
+    add_defines("NOVL_PLAT_WINDOWS")
     set_languages("cxx20")
     set_runtimes("MD")
 end
@@ -81,6 +81,7 @@ target("Novl")
     -- platform related
     if is_plat("windows") then 
         add_syslinks("opengl32","user32","Gdi32","Shell32")
+        add_defines("NOVL_BUILD_DLL")
     end 
 
     -- Third party related defines
