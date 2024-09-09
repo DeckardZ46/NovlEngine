@@ -9,13 +9,15 @@ namespace Novl{
         WindowsWindow(const WindowData& wdata);
         ~WindowsWindow();
 
-        void onUpdate() override;
+        void update() override;
 
         inline uint32_t getWidth() const override { return m_data.width; }
         inline uint32_t getHeight() const override { return m_data.height; }
 
         inline void setVSync(bool enabled) override;
         inline bool isVSync() const override { return m_isVSync; }
+
+        bool isClose() const override;
 
     private:
         void init();

@@ -27,6 +27,6 @@ namespace Novl{
         ~Test(){};
 
         void testLibs();
-        void testJolt();
+        // void testJolt();
     };
 }

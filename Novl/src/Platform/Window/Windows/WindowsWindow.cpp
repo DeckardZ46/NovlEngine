@@ -59,8 +59,10 @@ namespace Novl{
         glfwTerminate();
     }
 
-    void WindowsWindow::onUpdate(){
+    void WindowsWindow::update(){
         glfwPollEvents();
+        glClearColor(0.0,1.0,1.0,1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
         glfwSwapBuffers(m_window);
     }
 
@@ -71,6 +73,14 @@ namespace Novl{
         }else{
             glfwSwapInterval(0);
             m_isVSync = false;
+        }
+    }
+
+    bool WindowsWindow::isClose() const{
+        if(glfwWindowShouldClose(m_window)){
+            return true;
+        }else{
+            return false;
         }
     }
 

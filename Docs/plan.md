@@ -2,6 +2,7 @@
 - Window System
 - Logging System
 - Event System
+- Layer
 - Runtime & Editor hello world
 - Inspector & Hierarchy tab & resource panel in Editor
 

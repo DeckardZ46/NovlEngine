@@ -2,7 +2,7 @@
  * < Novl Engine > Novl.h
  * Author: DeckardZ46
  * Date: 2024/09/09
- * Note: This is Novl runtime class header file
+ * Note: NovlRuntime class header file
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
@@ -31,9 +31,12 @@ namespace Novl{
         inline Window& getWindow() {return *m_window;}
 
         void init();
-        void run();
+        void tick();
+
+        inline bool isWindowClose() { return m_window->isClose(); }
 
     private:
+        bool m_initialized = false;
         bool m_running = false;
         n_uptr<Window> m_window;
     };

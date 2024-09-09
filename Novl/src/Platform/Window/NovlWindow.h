@@ -2,7 +2,7 @@
  * < Novl Engine > NovlWindow.h
  * Author: DeckardZ46
  * Date: 2024/08/30
- * Note: Window class in Novl Engine.
+ * Note: NovlWindow class header file
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
@@ -25,13 +25,15 @@ namespace Novl {
 	public:
 		virtual ~Window() {}
 
-		virtual void onUpdate() = 0;
+		virtual void update() = 0;
 		
 		virtual uint32_t getWidth() const = 0;
 		virtual uint32_t getHeight() const = 0;
 
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
+
+		virtual bool isClose() const = 0;
 
 		static Window* Create(const WindowData& wdata = WindowData());
 	};

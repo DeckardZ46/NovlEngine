@@ -56,7 +56,7 @@ target("Novl")
     end
 
     -- static
-    libs = {"glad","glfw3","ImGui","Jolt","freetype"}
+    libs = {"glad","glfw3","ImGui","freetype"}
 
     for _, lib in ipairs(libs) do
         add_includedirs(string.format("../Libs/%s/include",lib))
