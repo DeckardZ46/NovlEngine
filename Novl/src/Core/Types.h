@@ -13,16 +13,23 @@
 #include <mutex>
 
 /**
- *  For now it's just a wrapper for STL types and containers, maybe replace them with own implementation in the future
+ *  For now it's just a wrapper for STL types and containers, maybe replace them with other implementation in the future
  */
 namespace Novl{
     using n_string  = std::string;
-    using n_vector  = std::vector;
     using n_mutex   = std::mutex;
 
-    /**
-     * smart pointer
-     */
+    // platform related
+#ifdef NOVL_PLAT_WINDOWS
+    using n_float   = float;
+    using n_floatL  = double;
+#endif
+
+    // containers
+    template<typename T>
+    using n_vector  = std::vector<T>;
+
+    // smart pointer 
     template<typename T>
     using n_uptr = std::unique_ptr<T>;
 

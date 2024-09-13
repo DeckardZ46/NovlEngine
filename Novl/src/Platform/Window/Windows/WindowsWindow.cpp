@@ -2,6 +2,10 @@
 #include <glad.h>
 #include "WindowsWindow.h"
 
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 namespace Novl{
     static bool s_glfwInit = false;
 
@@ -48,6 +52,21 @@ namespace Novl{
         // set callback funtions
         glfwSetWindowUserPointer(m_window,&m_data);
         glfwSetFramebufferSizeCallback(m_window, FramebufferSizeChange_cb);
+
+        // init ImGui 
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO &io = ImGui::GetIO();
+        ImGui::StyleColorsDark();
+        io.Fonts->AddFontFromFileTTF("../../../../Assets/Fonts/Cousine-Regular.ttf",14);
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
+
+        // platform specific initializing
+#ifdef NOVL_PLAT_WINDOWS
+        ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+        ImGui_ImplOpenGL3_Init("#version 460");
+#endif
     }
 
     void WindowsWindow::shutdown(){
@@ -63,8 +82,15 @@ namespace Novl{
         glfwPollEvents();
         glClearColor(0.0,1.0,1.0,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+        ImGui::ShowDemoWindow();
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(m_window);
     }
+
 
     void WindowsWindow::setVSync(bool enabled){
         if(enabled){

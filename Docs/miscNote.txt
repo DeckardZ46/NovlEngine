@@ -1,0 +1,22 @@
+/*
+ *
+ * This is miscellaneous notes during dev & debugging
+ *
+ */
+
+ <2024.09.12>
+    类似这种报错
+    ---
+    error: execv(C:\Users\decka\Projects\NovlEngine\Build\build\release\windows_x64\Novl Editor.exe ) failed(-1073741819)
+    ---
+    这个报错码一般是指针指向的东西有问题...比如在Runtime init之前就调用了它里面的东西，或者在Log init之前就打log了之类的
+
+<2024.09.14>
+    尝试了Window System放在Runtime而ImGui的所有都放在Editor，但是ImGui初始化的时候需要一个GLFWwindow*，这个从Runtime实例->WindowsWindow实例->get到GLFWwindow*，并且cast成一个void*传到Editor，再cast回GLFWwindow*
+    本来以为这样OK的，但是不行，会报错：
+    ---
+    Assertion failed: bd->PrevWndProc != nullptr, file imgui_impl_glfw.cpp, line 636
+    error: execv(C:\Users\decka\Projects\NovlEngine\Build\build\release\windows_x64\Novl Editor.exe ) failed(-1073740791)
+    ---
+    整了一下午没整明白怎么回事，放弃了，其实print出来两边指针指向的地址都是一致的，但是仍然不行
+    决定把ImGui的初始化也放在Runtime，就是在Runtime抽象出来一个UI类，在Editor实现一个子类吧

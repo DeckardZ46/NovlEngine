@@ -2,14 +2,14 @@
  * < Novl Engine > Novl.h
  * Author: DeckardZ46
  * Date: 2024/09/09
- * Note: NovlRuntime class header file
+ * Note: This is header file for Novl Engine Runtime
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
 #include <RuntimeCommon.h>
 #include <Core/Log/Log.h>
 #include <Core/Types.h>
-#include "Platform/Window/NovlWindow.h"
+#include "Details/Window/NovlWindow.h"
 
 namespace Novl{
     class NOVL_API NovlRuntime{

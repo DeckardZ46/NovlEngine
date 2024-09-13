@@ -1,5 +1,5 @@
 #include <pch.h>
-#include "NovlWindow.h"
+#include <Details/Window/NovlWindow.h>
 #include <Platform/Window/Windows/WindowsWIndow.h>
 
 namespace Novl{

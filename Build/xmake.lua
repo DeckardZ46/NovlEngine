@@ -19,6 +19,7 @@ if is_mode("debug") then
     add_defines("NOVL_ENABLE_ASSERT")
 elseif is_mode("release") then 
     add_defines("NOVL_RELEASE")
+    add_defines("NOVL_ENABLE_ASSERT") -- temporary
 end
 
 set_targetdir("$(buildir)/$(mode)/$(plat)_$(arch)")
@@ -95,6 +96,7 @@ target("Novl Editor")
     set_kind("binary")
 
     -- add file to target
+    set_pcxxheader("../Novl/src/pch.h")
     add_files("../NovlEditor/**.cpp")
 
     -- add includes
@@ -109,7 +111,7 @@ target("Novl Editor")
     end
 
     -- static
-    libs = {"ImGui","freetype"}
+    libs = {"glfw3","ImGui","freetype"}
 
     for _, lib in ipairs(libs) do
         add_includedirs(string.format("../Libs/%s/include",lib))
@@ -129,5 +131,10 @@ target("Novl Editor")
             os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(buildir)/$(mode)/$(plat)_$(arch)")
         end)
     end
+
+    -- platform related
+    if is_plat("windows") then 
+        add_syslinks("opengl32","user32","Gdi32","Shell32")
+    end 
     
 target_end()

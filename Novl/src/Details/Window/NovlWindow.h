@@ -2,7 +2,7 @@
  * < Novl Engine > NovlWindow.h
  * Author: DeckardZ46
  * Date: 2024/08/30
- * Note: NovlWindow class header file
+ * Note: This is abstract cross-platform window of Novl Engine
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
@@ -32,8 +32,9 @@ namespace Novl {
 
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
-
 		virtual bool isClose() const = 0;
+
+		virtual void* getNativeWindow() const = 0;
 
 		static Window* Create(const WindowData& wdata = WindowData());
 	};

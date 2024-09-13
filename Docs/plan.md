@@ -11,5 +11,7 @@
 - frame graph
 - cross platform RHI 
 - clustered forward rendering
+- job system
+- material manager & cross-platform shader
 - C# as script language
 - Resource importer (gltf or fbx or USD)

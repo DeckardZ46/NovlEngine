@@ -8,6 +8,7 @@
 
 #pragma once 
 #include <Novl.h>
+#include "GUI/GUI.h"
 
 namespace Novl{
     class NovlEditor{
@@ -20,6 +21,6 @@ namespace Novl{
         void close();
 
     private:
-
+        n_uptr<NovlGUI> m_GUI;
     };
 }

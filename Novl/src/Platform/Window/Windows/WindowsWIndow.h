@@ -1,5 +1,5 @@
 #pragma once 
-#include <Platform/Window/NovlWindow.h>
+#include <Details/Window/NovlWindow.h>
 #include <glfw3.h>
 
 namespace Novl{
@@ -16,8 +16,9 @@ namespace Novl{
 
         inline void setVSync(bool enabled) override;
         inline bool isVSync() const override { return m_isVSync; }
-
         bool isClose() const override;
+
+        void* getNativeWindow() const override { return static_cast<void*>(m_window);}
 
     private:
         void init();

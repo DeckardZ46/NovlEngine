@@ -1,3 +1,4 @@
+#include <pch.h>
 #include "NovlEditor.h"
 
 namespace Novl{
@@ -11,6 +12,7 @@ namespace Novl{
 
     void NovlEditor::init(){
         NovlRuntime::Get().init();
+        m_GUI = make_unique<NovlGUI>();
     }
 
     void NovlEditor::close(){
