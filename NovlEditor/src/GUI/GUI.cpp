@@ -10,8 +10,8 @@
 
 namespace Novl{
     NovlGUI::NovlGUI() {
-        NLOGI("Initializing NovlGUI...");
-
+        NLOGD("Initializing NovlGUI...");
+        
 
     }
 

@@ -32,5 +32,5 @@
 #ifdef NOVL_PLAT_WINDOWS
     // OpenGL version settings, version = MAJ.MIN, e.g. 3.3
     #define NOVL_OGL_VER_MAJ 3  
-    #define NOVL_OGL_VER_MIN 3
+    #define NOVL_OGL_VER_MIN 3  
 #endif

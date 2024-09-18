@@ -3,7 +3,7 @@
 #include <Platform/Window/Windows/WindowsWIndow.h>
 
 namespace Novl{
-    Window* Window::Create(const WindowData& wdata){
+    WindowBase* WindowBase::Create(const WindowData& wdata){
 #ifdef NOVL_PLAT_WINDOWS
         return new WindowsWindow(wdata);
 #else

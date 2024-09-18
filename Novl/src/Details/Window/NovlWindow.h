@@ -20,10 +20,10 @@ namespace Novl {
 				:title(title),width(width),height(height){}
 	};
 
-	// Desktop Window
-	class NOVL_API Window {
+	// Desktop WindowBase
+	class NOVL_API WindowBase {
 	public:
-		virtual ~Window() {}
+		virtual ~WindowBase() {}
 
 		virtual void update() = 0;
 		
@@ -36,7 +36,7 @@ namespace Novl {
 
 		virtual void* getNativeWindow() const = 0;
 
-		static Window* Create(const WindowData& wdata = WindowData());
+		static WindowBase* Create(const WindowData& wdata = WindowData());
 	};
 
 }

@@ -28,7 +28,7 @@ namespace Novl{
             return s_Runtime;
         }
 
-        inline Window& getWindow() {return *m_window;}
+        inline WindowBase& getWindow() {return *m_window;}
 
         void init();
         void tick();
@@ -38,6 +38,6 @@ namespace Novl{
     private:
         bool m_initialized = false;
         bool m_running = false;
-        n_uptr<Window> m_window;
+        n_uptr<WindowBase> m_window;
     };
 }

@@ -4,7 +4,7 @@
 
 namespace Novl{
     class WindowsWindow final
-        :public Window{
+        :public WindowBase{
     public:
         WindowsWindow(const WindowData& wdata);
         ~WindowsWindow();

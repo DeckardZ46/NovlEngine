@@ -11,10 +11,10 @@ namespace Novl{
 
         // init logging system
         Log::Init();
-        NLOGI("Initializing Novl Runtime...");
+        NLOGD("Initializing Novl Runtime...");
 
         // init window
-        m_window = n_uptr<Window>(Window::Create());
+        m_window = n_uptr<WindowBase>(WindowBase::Create());
         m_initialized = true;
 
         return;

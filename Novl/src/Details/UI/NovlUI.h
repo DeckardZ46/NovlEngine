@@ -5,3 +5,20 @@
  * Note: This is UI interface of Novl Engine, for both Editor UI and Game UI
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
+#pragma once
+#include <RuntimeCommon.h>
+
+namespace Novl{
+    class NOVL_API UIBase{
+    public:
+        UIBase(){}
+        virtual ~UIBase(){}
+
+        virtual void init() = 0;
+        virtual void update() = 0;
+        virtual void draw() = 0;
+        
+    private:
+
+    };
+}
