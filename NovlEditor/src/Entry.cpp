@@ -8,7 +8,7 @@
 
 // Platform specific settings
 #ifdef NOVL_PLAT_WINDOWS
-#include <Windows.h>
+    #include <Windows.h>
 #endif
 
 #include <pch.h>

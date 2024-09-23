@@ -10,6 +10,7 @@ namespace Novl{
         ~WindowsWindow();
 
         void update() override;
+        void endFrame() override;
 
         inline uint32_t getWidth() const override { return m_data.width; }
         inline uint32_t getHeight() const override { return m_data.height; }

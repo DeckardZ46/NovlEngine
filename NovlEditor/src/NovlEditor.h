@@ -5,10 +5,9 @@
  * Note: NovlEditor class header file
  * Codebase: https://github.com/DeckardZ46/NovlEngine
 */
-
 #pragma once 
 #include <Novl.h>
-#include "GUI/GUI.h"
+#include "GUI/EditorUI.h"
 
 namespace Novl{
     class NovlEditor{
@@ -21,6 +20,6 @@ namespace Novl{
         void close();
 
     private:
-        n_uptr<NovlGUI> m_GUI;
+        n_uptr<EditorUI> m_GUI;
     };
 }

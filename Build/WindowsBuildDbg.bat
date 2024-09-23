@@ -1,4 +1,5 @@
 @echo off
+xmake f -m debug
 xmake
 
 echo Build finished.

@@ -20,3 +20,12 @@
     ---
     整了一下午没整明白怎么回事，放弃了，其实print出来两边指针指向的地址都是一致的，但是仍然不行
     决定把ImGui的初始化也放在Runtime，就是在Runtime抽象出来一个UI类，在Editor实现一个子类吧
+
+<2024.09.20>
+    上述问题还没解决，但好像使用dll的时候exe能否使用dll在堆上分配的内存取决于内存管理策略，以及要dll和exe使用相同的编译器选项，链接到相同的CRT(/MD or /MDd)
+    总之就是在一个dll中分配的内存不应该在另一个模块中访问或释放之类的，因为相同的指针指向的物理地址不是同一块
+    属于跨dll边界问题的一种，指针可能失效
+
+<2024.09.23>
+    解决方式是把ImGui init需要glfw window的部分放在runtime中了，看了一下其他把Runtime和Editor分开的引擎也是这样做（Piccolo和ZXEngine），有点丑陋，但是能run
+    下一步最好把novl runtime的数据分离出来到global context里，runtime中是逻辑，global context是数据，避免耦合住了

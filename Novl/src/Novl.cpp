@@ -20,9 +20,20 @@ namespace Novl{
         return;
     }
 
+    void NovlRuntime::shutdown(){
+        // close window
+        m_window.reset();
+    }
+
     void NovlRuntime::tick(){
         // update window
         m_window->update();
+
         return;
+    }
+
+    void NovlRuntime::flush(){
+        // swap window buffer
+        m_window->endFrame();
     }
 }

@@ -28,16 +28,19 @@ namespace Novl{
             return s_Runtime;
         }
 
-        inline WindowBase& getWindow() {return *m_window;}
-
         void init();
-        void tick();
+        void shutdown();
 
+        void tick();
+        void flush();
+
+        inline WindowBase& getWindow() {return *m_window;}
         inline bool isWindowClose() { return m_window->isClose(); }
 
     private:
         bool m_initialized = false;
         bool m_running = false;
+        
         n_uptr<WindowBase> m_window;
     };
 }

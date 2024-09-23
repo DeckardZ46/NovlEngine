@@ -4,23 +4,19 @@
 #include <Details/Window/NovlWindow.h>
 #include <imgui.h>
 
-#ifdef NOVL_PLAT_WINDOWS
-    #include <glfw3.h>
-    #include <imgui_impl_glfw.h>
-    #include <imgui_impl_opengl3.h>
-#endif
-
 namespace Novl{
     class NOVL_API ImGuiUI:public UIBase{
     public:
         ImGuiUI();
         virtual ~ImGuiUI();
 
-        void init() override;
-        void update() override;
-        void draw() override;
+        virtual void init() override;
+        virtual void clear() override;
+        virtual void update() override;
+        virtual void draw() override;
         
     private:
-
-    }
+        ImGuiContext* m_context;
+        ImGuiIO* m_io;
+    };
 }
