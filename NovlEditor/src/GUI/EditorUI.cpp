@@ -1,16 +1,17 @@
-#include "EditorUI.h"
 #include <pch.h>
+#include "EditorUI.h"
 
 #ifdef NOVL_PLAT_WINDOWS
-#include "EditorUI.h"
 #include <glfw3.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
-#endif
+#endif // NOVL_PLAT_WINDOWS
+
+#include "Panels/ConsolePanel.h"
 
 namespace Novl {
 EditorUI::EditorUI() {
-    NLOGD("Initializing EditorUI...");
+    ELOGD("Initializing EditorUI...");
 
     // create imgui context
     IMGUI_CHECKVERSION();
@@ -35,6 +36,7 @@ EditorUI::~EditorUI() {
 
 void EditorUI::init() {
     // init panels
+    ConsolePanel consolePanel("ConsolePanel");
 }
 
 void EditorUI::clear() {

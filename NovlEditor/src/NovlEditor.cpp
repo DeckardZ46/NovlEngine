@@ -12,7 +12,7 @@ namespace Novl{
     }
 
     /*
-       process below are mostly order sensitive in their implementations, for example do not init Editor-GUI before init Runtime
+       Process below are mostly order sensitive in their implementations, for example: do not init Editor-GUI before init Runtime
        Manually controlling orders is needed for now
     */
     void NovlEditor::init(){
@@ -25,6 +25,7 @@ namespace Novl{
 
         // init Editor GUI
         m_GUI = make_unique<EditorUI>();
+        m_GUI->init();
     }
 
     void NovlEditor::close(){
