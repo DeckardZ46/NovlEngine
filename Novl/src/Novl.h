@@ -12,7 +12,7 @@
 #include "Details/Window/NovlWindow.h"
 
 namespace Novl{
-    class NOVL_API NovlRuntime{
+    class NovlRuntime{
     private:
         NovlRuntime();
         NovlRuntime(const NovlRuntime&) = delete;
@@ -40,7 +40,7 @@ namespace Novl{
     private:
         bool m_initialized = false;
         bool m_running = false;
-        
+
         n_uptr<WindowBase> m_window;
     };
 }

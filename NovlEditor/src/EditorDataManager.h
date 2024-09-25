@@ -8,6 +8,7 @@
 #pragma once
 
 namespace Novl{
+    struct log_item;
     class EditorDataManager {
     private:
         EditorDataManager();
@@ -23,8 +24,13 @@ namespace Novl{
         static EditorDataManager s_Instance;
         return s_Instance;
     }
+
+    inline n_sptr<n_vector<log_item>> getLogContainer() const {
+        return m_logMsgs;
+    }
     
     private:
+        n_sptr<n_vector<log_item>> m_logMsgs;
         
     };
 }

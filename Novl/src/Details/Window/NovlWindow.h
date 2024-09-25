@@ -21,21 +21,23 @@ namespace Novl {
 	};
 
 	// Desktop WindowBase
-	class NOVL_API WindowBase {
+	class WindowBase {
 	public:
+		friend class NovlRuntime;
 		virtual ~WindowBase() {}
-
-		virtual void update() = 0;
-		virtual void endFrame() = 0;
 		
 		virtual uint32_t getWidth() const = 0;
 		virtual uint32_t getHeight() const = 0;
+		virtual void* getNativeWindow() const = 0;
 
-		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
 		virtual bool isClose() const = 0;
 
-		virtual void* getNativeWindow() const = 0;
+	
+	protected:
+		virtual void update() = 0;
+		virtual void endFrame() = 0;
+		virtual void setVSync(bool enabled) = 0;
 
 		static WindowBase* Create(const WindowData& wdata = WindowData());
 	};

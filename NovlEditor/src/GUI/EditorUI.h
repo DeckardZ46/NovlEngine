@@ -6,10 +6,10 @@
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
-#include <Novl.h>
 #include <Details/UI/ImGui/ImGuiUI.h>
 
 namespace Novl{
+    class PanelBase;
     class EditorUI :public ImGuiUI {
     public:
         EditorUI();
@@ -21,6 +21,6 @@ namespace Novl{
         void draw() override;
 
     private:
-        
+        n_vector<PanelBase*> m_panels;
     };
 }

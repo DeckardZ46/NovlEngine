@@ -17,7 +17,7 @@
 #include <iostream>
 
 namespace Novl{
-    class NOVL_API Test
+    class Test
     {
     private:
         /* data */

@@ -29,7 +29,7 @@ namespace Novl{
     template<typename T>
     using n_vector  = std::vector<T>;
 
-    // smart pointer 
+    // smart pointers 
     template<typename T>
     using n_uptr = std::unique_ptr<T>;
 

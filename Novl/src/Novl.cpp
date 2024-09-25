@@ -23,6 +23,9 @@ namespace Novl{
     void NovlRuntime::shutdown(){
         // close window
         m_window.reset();
+
+        // clear logger
+        Log::Clear();
     }
 
     void NovlRuntime::tick(){

@@ -9,7 +9,7 @@
 #include <RuntimeCommon.h>
 
 namespace Novl{
-    class NOVL_API UIBase{
+    class UIBase{
     public:
         UIBase(){}
         virtual ~UIBase(){}

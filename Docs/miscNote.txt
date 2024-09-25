@@ -29,3 +29,9 @@
 <2024.09.23>
     解决方式是把ImGui init需要glfw window的部分放在runtime中了，看了一下其他把Runtime和Editor分开的引擎也是这样做（Piccolo和ZXEngine），有点丑陋，但是能run
     下一步最好把novl runtime的数据分离出来到global context里，runtime中是逻辑，global context是数据，避免耦合住了
+
+<2024.09.24>
+    非常幽默，非常小丑，发现如果glfw window init的部分放在runtime中，editor中就get不到imgui的context了
+    又做了一个尝试：把imgui render backend的init放在runtime中，把context相关的放在editor中，但是render backend也需要imgui的context，找不到context了
+    好的，这就是dll跨边界的大坑，解决方式就是不用dll
+    从此改为static lib，已老实，编出来exe大点就大点吧

@@ -5,7 +5,7 @@
 #include <imgui.h>
 
 namespace Novl{
-    class NOVL_API ImGuiUI:public UIBase{
+    class ImGuiUI:public UIBase{
     public:
         ImGuiUI();
         virtual ~ImGuiUI();
@@ -16,7 +16,6 @@ namespace Novl{
         virtual void draw() override;
         
     private:
-        ImGuiContext* m_context;
-        ImGuiIO* m_io;
+        
     };
 }

@@ -16,36 +16,25 @@ ImGuiUI::~ImGuiUI() {
 }
 
 void ImGuiUI::init() {
-    // init ImGui
-    IMGUI_CHECKVERSION();
-    if (!ImGui::GetCurrentContext()){
-        ImGui::CreateContext();
-        ImGuiIO &io = ImGui::GetIO();
-        ImGui::StyleColorsDark();
-        io.Fonts->AddFontFromFileTTF("../../../../Assets/Fonts/Cousine-Regular.ttf", 14);
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
-
-#ifdef NOVL_PLAT_WINDOWS
-        void* glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
-        NOVL_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
-        ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow*>(glfwWindowPtr), true);
-        ImGui_ImplOpenGL3_Init("#version 460");
-#endif // NOVL_PLAT_WINDOWS
-    }
+    /*
+        here we init imgui render backend, make sure init imgui context BEFORE this
+     */
+    NOVL_ASSERT(ImGui::GetCurrentContext() != nullptr,"Cannot get imgui context before init render backend for imgui!");
+    #ifdef NOVL_PLAT_WINDOWS
+            void* glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
+            NOVL_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
+            ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow*>(glfwWindowPtr), true);
+            ImGui_ImplOpenGL3_Init("#version 460");
+    #endif // NOVL_PLAT_WINDOWS
+    
 }
 
 void ImGuiUI::clear(){
+    // clear imgui render backend, BEFORE delete imgui context
 #ifdef NOVL_PLAT_WINDOWS
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplGlfw_Shutdown();
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
 #endif // NOVL_PLAT_WINDOWS
-
-        ImGui::DestroyContext();
-
-        // after ImGui::DestroyContext(), context & io pointer should already be free
-        m_context = nullptr;
-        m_io = nullptr;
 }
 
 void ImGuiUI::update() {
@@ -55,7 +44,6 @@ void ImGuiUI::update() {
 #endif // NOVL_PLAT_WINDOWS
 
     ImGui::NewFrame();
-    ImGui::ShowDemoWindow();
 }
 
 void ImGuiUI::draw() {

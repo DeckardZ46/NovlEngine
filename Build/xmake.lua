@@ -19,7 +19,6 @@ if is_mode("debug") then
     add_defines("NOVL_ENABLE_ASSERT")
 elseif is_mode("release") then 
     add_defines("NOVL_RELEASE")
-    add_defines("NOVL_ENABLE_ASSERT") -- temporary
 end
 
 set_targetdir("$(buildir)/$(mode)/$(plat)_$(arch)")
@@ -39,7 +38,7 @@ end
 
 ---------- NOVL RUNTIME -------------
 target("Novl")
-    set_kind("shared")
+    set_kind("static")
 
     -- add file to target
     set_pcxxheader("../Novl/src/pch.h")

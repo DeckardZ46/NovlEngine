@@ -12,6 +12,7 @@ namespace Novl{
     void FramebufferSizeChange_cb(GLFWwindow *window, int width, int height);
 
     WindowsWindow::WindowsWindow(const WindowData& wdata):m_data(wdata){
+        // RAII
         init();
     }
 
