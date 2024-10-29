@@ -6,7 +6,7 @@
 namespace Novl{
 ConsolePanel::ConsolePanel(n_string &&name): PanelBase(std::move(name)){
     ELOGD("Initializing console panel...");
-
+    
 }
 
 ConsolePanel::~ConsolePanel() {

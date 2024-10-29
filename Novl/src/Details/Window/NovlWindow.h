@@ -33,7 +33,6 @@ namespace Novl {
 		virtual bool isVSync() const = 0;
 		virtual bool isClose() const = 0;
 
-	
 	protected:
 		virtual void update() = 0;
 		virtual void endFrame() = 0;

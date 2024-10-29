@@ -2,7 +2,10 @@
 #include "Novl.h"
 
 namespace Novl{
-    NovlRuntime::NovlRuntime() = default;
+    NovlRuntime::NovlRuntime() {
+        // RAII
+        init();
+    }
 
     NovlRuntime::~NovlRuntime() = default;
 

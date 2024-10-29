@@ -39,6 +39,7 @@ end
 ---------- NOVL RUNTIME -------------
 target("Novl")
     set_kind("static")
+    add_defines("NOVL_RT")
 
     -- add file to target
     set_pcxxheader("../Novl/src/pch.h")
@@ -81,7 +82,6 @@ target("Novl")
     -- platform related
     if is_plat("windows") then 
         add_syslinks("opengl32","user32","Gdi32","Shell32")
-        add_defines("NOVL_BUILD_DLL")
     end 
 
     -- Third party related defines
@@ -93,6 +93,7 @@ target_end()
 target("Novl Editor")
     add_deps("Novl")
     set_kind("binary")
+    add_defines("NOVL_EDT")
 
     -- add file to target
     set_pcxxheader("../Novl/src/pch.h")

@@ -25,12 +25,12 @@ namespace Novl{
         return s_Instance;
     }
 
-    inline n_sptr<n_vector<log_item>> getLogContainer() const {
+    inline n_sptr<n_cqueue<log_item>> getLogContainer() const {
         return m_logMsgs;
     }
     
     private:
-        n_sptr<n_vector<log_item>> m_logMsgs;
+        n_sptr<n_cqueue<log_item>> m_logMsgs;
         
     };
 }

@@ -6,41 +6,48 @@
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
-#include <RuntimeCommon.h>
+#include "Details/Window/NovlWindow.h"
 #include <Core/Log/Log.h>
 #include <Core/Types.h>
-#include "Details/Window/NovlWindow.h"
+#include <RuntimeCommon.h>
 
-namespace Novl{
-    class NovlRuntime{
-    private:
-        NovlRuntime();
-        NovlRuntime(const NovlRuntime&) = delete;
-        NovlRuntime(NovlRuntime&&) = delete;
-        NovlRuntime &operator=(const NovlRuntime&) = delete;
-        NovlRuntime &operator=(NovlRuntime&&) = delete;
+namespace Novl {
+class NovlRuntime {
+  private:
+    NovlRuntime();
+    NovlRuntime(const NovlRuntime &) = delete;
+    NovlRuntime(NovlRuntime &&) = delete;
+    NovlRuntime &operator=(const NovlRuntime &) = delete;
+    NovlRuntime &operator=(NovlRuntime &&) = delete;
 
-    public:
-        ~NovlRuntime();
+  public:
+    friend class NovlEditor;
 
-        inline static NovlRuntime& Get() {
-            static NovlRuntime s_Runtime;
-            return s_Runtime;
-        }
+    ~NovlRuntime();
 
-        void init();
-        void shutdown();
+    inline static NovlRuntime &Get() {
+        static NovlRuntime s_Runtime;
+        return s_Runtime;
+    }
 
-        void tick();
-        void flush();
+    inline WindowBase &getWindow() {
+        return *m_window;
+    }
+    inline bool isWindowClose() {
+        return m_window->isClose();
+    }
 
-        inline WindowBase& getWindow() {return *m_window;}
-        inline bool isWindowClose() { return m_window->isClose(); }
+  private:
+    void init();
+    void shutdown();
 
-    private:
-        bool m_initialized = false;
-        bool m_running = false;
+    void tick();
+    void flush();
 
-        n_uptr<WindowBase> m_window;
-    };
-}
+  private:
+    bool m_initialized = false;
+    bool m_running = false;
+
+    n_uptr<WindowBase> m_window;
+};
+} // namespace Novl

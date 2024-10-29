@@ -4,12 +4,11 @@
 
 namespace Novl {
 EditorDataManager::EditorDataManager() {
-    m_logMsgs = make_shared<n_vector<log_item>>();
-    m_logMsgs->reserve(MAX_LOG_MSG);
+    m_logMsgs = make_shared<n_cqueue<log_item>>(MAX_LOG_MSG);
 
     // construct ui sink for editor
     auto ui_sink = gui_sink_mt(m_logMsgs);
-    NOVL_ASSERT(ui_sink, "ConsolePanel: init failed because log container is null!");
+    EDITOR_ASSERT(ui_sink, "ConsolePanel: init failed because log container is null!");
     Log::AddSink(std::move(ui_sink));
 }
 

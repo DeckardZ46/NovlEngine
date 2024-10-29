@@ -39,13 +39,17 @@ namespace Novl {
 }
 
 // Runtime log macros
-#define NLOGD(...)	    ::Novl::Log::GetRuntimeLogger()->debug(__VA_ARGS__)
-#define NLOGI(...)		::Novl::Log::GetRuntimeLogger()->info(__VA_ARGS__)
-#define NLOGW(...)		::Novl::Log::GetRuntimeLogger()->warn(__VA_ARGS__)
-#define NLOGE(...)		::Novl::Log::GetRuntimeLogger()->error(__VA_ARGS__)
+#ifdef NOVL_RT
+	#define NLOGD(...)	    ::Novl::Log::GetRuntimeLogger()->debug(__VA_ARGS__)
+	#define NLOGI(...)		::Novl::Log::GetRuntimeLogger()->info(__VA_ARGS__)
+	#define NLOGW(...)		::Novl::Log::GetRuntimeLogger()->warn(__VA_ARGS__)
+	#define NLOGE(...)		::Novl::Log::GetRuntimeLogger()->error(__VA_ARGS__)
+#endif // NOVL_RT
 
 // Editor log macros
-#define ELOGD(...)		::Novl::Log::GetEditorLogger()->debug(__VA_ARGS__)
-#define ELOGI(...)		::Novl::Log::GetEditorLogger()->info(__VA_ARGS__)
-#define ELOGW(...)		::Novl::Log::GetEditorLogger()->warn(__VA_ARGS__)
-#define ELOGE(...)		::Novl::Log::GetEditorLogger()->error(__VA_ARGS__)
+#ifdef NOVL_EDT
+	#define ELOGD(...)		::Novl::Log::GetEditorLogger()->debug(__VA_ARGS__)
+	#define ELOGI(...)		::Novl::Log::GetEditorLogger()->info(__VA_ARGS__)
+	#define ELOGW(...)		::Novl::Log::GetEditorLogger()->warn(__VA_ARGS__)
+	#define ELOGE(...)		::Novl::Log::GetEditorLogger()->error(__VA_ARGS__)
+#endif // NOVL_EDT

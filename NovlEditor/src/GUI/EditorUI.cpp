@@ -1,5 +1,5 @@
-#include <pch.h>
 #include "EditorUI.h"
+#include <pch.h>
 
 #ifdef NOVL_PLAT_WINDOWS
 #include <glfw3.h>
@@ -15,6 +15,7 @@ EditorUI::EditorUI() {
 
     // create imgui context
     IMGUI_CHECKVERSION();
+
     if (!ImGui::GetCurrentContext()) {
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
@@ -36,7 +37,8 @@ EditorUI::~EditorUI() {
 
 void EditorUI::init() {
     // init panels
-    ConsolePanel consolePanel("ConsolePanel");
+    auto consolePanel = new ConsolePanel("ConsolePanel");
+    m_panels.emplace_back(std::move(consolePanel));
 }
 
 void EditorUI::clear() {
@@ -46,10 +48,21 @@ void EditorUI::clear() {
 void EditorUI::update() {
     ImGuiUI::update();
     ImGui::ShowDemoWindow();
+    if (m_panels.size() > 0) {
+        for (auto panel : m_panels) {
+            panel->update();
+        }
+    }
 }
 
 void EditorUI::draw() {
     ImGuiUI::draw();
+    if (m_panels.size() > 0) {
+        for (auto panel : m_panels) {
+            EDITOR_ASSERT(panel != nullptr, "Editor UI: draw panel failed! Panel is null.");
+            panel->draw();
+        }
+    }
 }
 
 } // namespace Novl

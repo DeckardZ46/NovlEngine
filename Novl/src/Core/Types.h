@@ -12,22 +12,24 @@
 #include <memory>
 #include <mutex>
 
+#include <Core/Containers/CircularQueue.hpp>
+
 /**
  *  For now it's just a wrapper for STL types and containers, maybe replace them with other implementation in the future
  */
 namespace Novl{
+    // types
     using n_string  = std::string;
     using n_mutex   = std::mutex;
-
-    // platform related
-#ifdef NOVL_PLAT_WINDOWS
     using n_float   = float;
     using n_floatL  = double;
-#endif
 
     // containers
     template<typename T>
     using n_vector  = std::vector<T>;
+
+    template<typename T>
+    using n_cqueue = CircularQueue<T>;
 
     // smart pointers 
     template<typename T>
