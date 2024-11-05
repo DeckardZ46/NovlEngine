@@ -9,10 +9,10 @@ namespace Novl {
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 
 		// Novl logger has console sink by default
-		s_RuntimeLogger = spdlog::stdout_color_mt("Novl");
+		s_RuntimeLogger = spdlog::stdout_color_mt("Runtime");
 		s_RuntimeLogger->set_level(spdlog::level::trace);
 
-		s_EditorLogger = spdlog::stderr_color_mt("NovlEditor");
+		s_EditorLogger = spdlog::stderr_color_mt("Editor");
 		s_EditorLogger->set_level(spdlog::level::trace);
 	}
 

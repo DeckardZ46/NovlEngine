@@ -9,6 +9,7 @@
 /**
  *  STL 
  */
+#include <string>
 #include <algorithm>
 
 /**
@@ -16,3 +17,4 @@
  */
 #include <Core/Types.h>
 #include <Core/Log/Log.h>
+#include <Core/Utils.h>

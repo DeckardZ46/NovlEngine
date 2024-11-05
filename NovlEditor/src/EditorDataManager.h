@@ -31,6 +31,5 @@ namespace Novl{
     
     private:
         n_sptr<n_cqueue<log_item>> m_logMsgs;
-        
     };
 }

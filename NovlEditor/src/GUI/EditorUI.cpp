@@ -43,11 +43,18 @@ void EditorUI::init() {
 
 void EditorUI::clear() {
     // clear panels
+    for(auto panel : m_panels){
+        if(panel != nullptr){
+            delete panel;
+            panel = nullptr;
+        }
+    }
+    m_panels.clear();
+    n_vector<PanelBase*>().swap(m_panels);
 }
 
 void EditorUI::update() {
     ImGuiUI::update();
-    ImGui::ShowDemoWindow();
     if (m_panels.size() > 0) {
         for (auto panel : m_panels) {
             panel->update();
@@ -56,13 +63,13 @@ void EditorUI::update() {
 }
 
 void EditorUI::draw() {
-    ImGuiUI::draw();
     if (m_panels.size() > 0) {
         for (auto panel : m_panels) {
             EDITOR_ASSERT(panel != nullptr, "Editor UI: draw panel failed! Panel is null.");
             panel->draw();
         }
     }
+    ImGuiUI::draw();
 }
 
 } // namespace Novl

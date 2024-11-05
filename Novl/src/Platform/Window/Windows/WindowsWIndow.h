@@ -25,8 +25,8 @@ namespace Novl{
         inline void setVSync(bool enabled) override;
 
     private:
-        bool m_isVSync;
+        bool        m_isVSync;
         GLFWwindow* m_window;
-        WindowData m_data;
+        WindowData  m_data;
     };
 }

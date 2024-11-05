@@ -17,10 +17,11 @@
 namespace Novl {
 
 struct log_item {
+    bool isCmd = false;
+    n_string msg;
+    n_string logger;
     spdlog::log_clock::time_point time;
     spdlog::level::level_enum level;
-    n_string logger;
-    n_string msg;
 };
 
 template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex> {
@@ -45,7 +46,7 @@ template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex
         it.logger = n_string(msg.logger_name.data(), msg.logger_name.size());
         it.level = msg.level;
         it.time = msg.time;
-        messages->enqueue(std::move(it));
+        messages->forceEnqueue(std::move(it));
     }
     void flush_() override {
         // since we directly push log items into target container, we don't need to flush it

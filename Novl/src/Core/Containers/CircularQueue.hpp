@@ -1,16 +1,22 @@
+/**
+ * < Novl Engine > CircularQueue.hpp
+ * Author: DeckardZ46
+ * Date: 2024/11/04
+ * Note: A circular queue container for Novl Engine, it is NOT THREAD SAFE so be ware of using it in multi-threaded
+ * cases. Codebase: https://github.com/DeckardZ46/NovlEngine
+ */
 #include <optional>
 
-namespace Novl{
-template<typename T>
-class CircularQueue {
-private:
-    T* array;             
-    size_t front;        
-    size_t rear;          
-    size_t maxSize;      
-    size_t count;        
+namespace Novl {
+template <typename T> class CircularQueue {
+  private:
+    T *array;
+    size_t front;
+    size_t rear;
+    size_t maxSize;
+    size_t count;
 
-public:
+  public:
     CircularQueue(size_t size) : maxSize(size + 1), front(0), rear(0), count(0) {
         array = new T[maxSize];
     }
@@ -30,7 +36,7 @@ public:
     }
 
     // enqueue
-    bool enqueue(const T& value) {
+    bool enqueue(const T &value) {
         if (isFull()) {
             return false;
         }
@@ -38,6 +44,14 @@ public:
         rear = (rear + 1) % maxSize;
         ++count;
         return true;
+    }
+
+    // force enqueue
+    void forceEnqueue(const T &value) {
+        if (isFull()) {
+            dequeue();
+        }
+        enqueue(std::move(value));
     }
 
     // dequeue
@@ -70,6 +84,53 @@ public:
     // get circular queue size
     size_t size() const {
         return count;
+    }
+
+    // clear the queue, but it won't free memory usage
+    void Clear() {
+        front = rear = 0;
+        count = 0;
+    }
+
+    // Erase the queue and deallocate memory
+    void Erase() {
+        delete[] array;
+        array = nullptr;
+        maxSize = 0;
+        front = rear = 0;
+        count = 0;
+    }
+
+    // iterator for circular queue
+    class iterator {
+      private:
+        CircularQueue *q;
+        size_t index;
+
+      public:
+        iterator(CircularQueue *q, size_t idx) : q(q), index(idx) {
+        }
+
+        T &operator*() {
+            return q->array[(index + q->front) % q->maxSize];
+        }
+
+        iterator &operator++() {
+            index++;
+            return *this;
+        }
+
+        bool operator!=(const iterator &other) const {
+            return index != other.index;
+        }
+    };
+
+    iterator begin() {
+        return iterator(this, 0);
+    }
+
+    iterator end() {
+        return iterator(this, count);
     }
 };
 } // namespace Novl

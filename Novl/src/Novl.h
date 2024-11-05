@@ -30,10 +30,16 @@ class NovlRuntime {
         return s_Runtime;
     }
 
-    inline WindowBase &getWindow() {
+    inline WindowBase &getWindow() const {
         return *m_window;
     }
-    inline bool isWindowClose() {
+    inline uint32_t getWindowWidth() const{
+        return m_window->getWidth();
+    }
+    inline uint32_t getWindowHeight() const {
+        return m_window->getHeight();
+    }
+    inline bool isWindowClose() const {
         return m_window->isClose();
     }
 
