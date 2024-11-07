@@ -8,6 +8,7 @@
 #include <optional>
 
 namespace Novl {
+// It is NOT thread safe!
 template <typename T> class CircularQueue {
   private:
     T *array;
@@ -46,7 +47,7 @@ template <typename T> class CircularQueue {
         return true;
     }
 
-    // force enqueue
+    // Try avoiding using it, if have to use it, BE CAUTION.
     void forceEnqueue(const T &value) {
         if (isFull()) {
             dequeue();

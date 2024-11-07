@@ -20,16 +20,15 @@ void ImGuiUI::init() {
         here we init imgui render backend, make sure init imgui context BEFORE this
      */
     NOVL_ASSERT(ImGui::GetCurrentContext() != nullptr,"Cannot get imgui context before init render backend for imgui!");
-    #ifdef NOVL_PLAT_WINDOWS
-            void* glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
-            NOVL_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
-            ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow*>(glfwWindowPtr), true);
-            ImGui_ImplOpenGL3_Init("#version 460");
-    #endif // NOVL_PLAT_WINDOWS
-    
+#ifdef NOVL_PLAT_WINDOWS
+    void *glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
+    NOVL_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
+    ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow *>(glfwWindowPtr), true);
+    ImGui_ImplOpenGL3_Init("#version 460");
+#endif // NOVL_PLAT_WINDOWS
 }
 
-void ImGuiUI::clear(){
+void ImGuiUI::clear() {
     // clear imgui render backend, BEFORE delete imgui context
 #ifdef NOVL_PLAT_WINDOWS
     ImGui_ImplOpenGL3_Shutdown();
