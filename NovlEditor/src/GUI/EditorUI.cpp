@@ -1,4 +1,5 @@
 #include "EditorUI.h"
+#include <Novl.h>
 #include <pch.h>
 
 #ifdef NOVL_PLAT_WINDOWS
@@ -12,8 +13,9 @@
 namespace Novl {
 EditorUI::EditorUI() {
     ELOGD("Initializing EditorUI...");
-
-    // create imgui context
+    /**
+     *  create imgui context
+     */
     IMGUI_CHECKVERSION();
 
     if (!ImGui::GetCurrentContext()) {
@@ -25,13 +27,31 @@ EditorUI::EditorUI() {
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
     }
 
-    // initialize imgui render backend, make sure AFTER creating imgui context
-    ImGuiUI::init();
+    /**
+     *  init imgui render backend
+     */
+    EDITOR_ASSERT(ImGui::GetCurrentContext() != nullptr,
+                "Cannot get imgui context before init render backend for imgui!");
+    // windows
+#ifdef NOVL_PLAT_WINDOWS
+    void *glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
+    EDITOR_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
+    ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow *>(glfwWindowPtr), true);
+    ImGui_ImplOpenGL3_Init("#version 460");
+#endif // NOVL_PLAT_WINDOWS
+
+    // other platforms
+    // ...
 }
 
 EditorUI::~EditorUI() {
-    // order sensitive here
-    ImGuiUI::clear();
+    // clear imgui render backend
+#ifdef NOVL_PLAT_WINDOWS
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+#endif // NOVL_PLAT_WINDOWS
+
+    // destroy context
     ImGui::DestroyContext();
 }
 
@@ -43,18 +63,23 @@ void EditorUI::init() {
 
 void EditorUI::clear() {
     // clear panels
-    for(auto panel : m_panels){
-        if(panel != nullptr){
+    for (auto panel : m_panels) {
+        if (panel != nullptr) {
             delete panel;
             panel = nullptr;
         }
     }
     m_panels.clear();
-    n_vector<PanelBase*>().swap(m_panels);
+    n_vector<PanelBase *>().swap(m_panels);
 }
 
 void EditorUI::update() {
-    ImGuiUI::update();
+#ifdef NOVL_PLAT_WINDOWS
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+#endif // NOVL_PLAT_WINDOWS
+
+    ImGui::NewFrame();
     if (m_panels.size() > 0) {
         for (auto panel : m_panels) {
             panel->update();
@@ -69,7 +94,11 @@ void EditorUI::draw() {
             panel->draw();
         }
     }
-    ImGuiUI::draw();
+    ImGui::Render();
+
+#ifdef NOVL_PLAT_WINDOWS
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+#endif // NOVL_PLAT_WINDOWS
 }
 
 } // namespace Novl
