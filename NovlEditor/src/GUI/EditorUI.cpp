@@ -1,6 +1,6 @@
-#include "EditorUI.h"
-#include <Novl.h>
 #include <pch.h>
+#include <Novl.h>
+#include "EditorUI.h"
 
 #ifdef NOVL_PLAT_WINDOWS
 #include <glfw3.h>
@@ -34,7 +34,7 @@ EditorUI::EditorUI() {
                 "Cannot get imgui context before init render backend for imgui!");
     // windows
 #ifdef NOVL_PLAT_WINDOWS
-    void *glfwWindowPtr = NovlRuntime::Get().getWindow().getNativeWindow();
+    void *glfwWindowPtr = NovlRuntime::Get().getNativeWindow();
     EDITOR_ASSERT(glfwWindowPtr != nullptr, "ImGuiUI: get native glfw window failed!");
     ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow *>(glfwWindowPtr), true);
     ImGui_ImplOpenGL3_Init("#version 460");

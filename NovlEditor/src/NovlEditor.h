@@ -6,18 +6,18 @@
  * Codebase: https://github.com/DeckardZ46/NovlEngine
 */
 #pragma once 
-#include <Novl.h>
+#include <NovlApp.h>
 #include "GUI/EditorUI.h"
 
 namespace Novl{
-    class NovlEditor{
+    class NovlEditor: public NovlApp{
     public:
         NovlEditor();
         ~NovlEditor();
 
         void init();
-        void update();
         void close();
+        void update() override;
 
     private:
         n_uptr<EditorUI> m_GUI;

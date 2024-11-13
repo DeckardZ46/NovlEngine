@@ -15,6 +15,7 @@
 /**
  *  Inside Project
  */
+#include <Common.h>
 #include <Core/Types.h>
 #include <Core/Log/Log.h>
 #include <Core/Utils.h>

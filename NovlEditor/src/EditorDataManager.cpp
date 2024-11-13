@@ -1,6 +1,6 @@
+#include <pch.h>
 #include "EditorDataManager.h"
 #include "Core/Log/Sink/gui_sink.h"
-#include <pch.h>
 
 namespace Novl {
 EditorDataManager::EditorDataManager() {

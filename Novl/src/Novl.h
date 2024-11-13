@@ -9,10 +9,10 @@
 #include "Details/Window/NovlWindow.h"
 #include <Core/Log/Log.h>
 #include <Core/Types.h>
-#include <RuntimeCommon.h>
 
 namespace Novl {
 class NovlRuntime {
+    friend class NovlApp;
   private:
     NovlRuntime();
     NovlRuntime(const NovlRuntime &) = delete;
@@ -21,29 +21,28 @@ class NovlRuntime {
     NovlRuntime &operator=(NovlRuntime &&) = delete;
 
   public:
-    friend class NovlEditor;
-
     ~NovlRuntime();
 
+    /**
+     * public functions
+     */
     inline static NovlRuntime &Get() {
         static NovlRuntime s_Runtime;
         return s_Runtime;
     }
 
+    // window system
     inline WindowBase &getWindow() const {
         return *m_window;
     }
-    inline uint32_t getWindowWidth() const{
-        return m_window->getWidth();
-    }
-    inline uint32_t getWindowHeight() const {
-        return m_window->getHeight();
-    }
-    inline bool isWindowClose() const {
-        return m_window->isClose();
+    inline void* getNativeWindow() {
+        return m_window->getNativeWindow();
     }
 
   private:
+    /**
+     * private functions
+     */
     void init();
     void shutdown();
 
@@ -51,9 +50,13 @@ class NovlRuntime {
     void flush();
 
   private:
+    /**
+     * private members
+     */
+    // status
     bool m_initialized = false;
-    bool m_running = false;
 
+    // managers & systems
     n_uptr<WindowBase> m_window;
 };
 } // namespace Novl

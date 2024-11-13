@@ -6,7 +6,6 @@
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
-#include <RuntimeCommon.h>
 
 namespace Novl {
 	struct WindowData {
@@ -22,13 +21,12 @@ namespace Novl {
 
 	// Desktop WindowBase
 	class WindowBase {
-	public:
 		friend class NovlRuntime;
+	public:
 		virtual ~WindowBase() {}
 		
 		virtual uint32_t getWidth() const = 0;
 		virtual uint32_t getHeight() const = 0;
-		virtual void* getNativeWindow() const = 0;
 
 		virtual bool isVSync() const = 0;
 		virtual bool isClose() const = 0;
@@ -37,6 +35,7 @@ namespace Novl {
 		virtual void update() = 0;
 		virtual void endFrame() = 0;
 		virtual void setVSync(bool enabled) = 0;
+		virtual void* getNativeWindow() const = 0;
 
 		static WindowBase* Create(const WindowData& wdata = WindowData());
 	};

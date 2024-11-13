@@ -3,12 +3,12 @@
 #include "EditorDataManager.h"
 
 namespace Novl{
-    NovlEditor::NovlEditor(){
-
+    NovlEditor::NovlEditor(): NovlApp("Novl Editor"){
+        
     }
 
     NovlEditor::~NovlEditor(){
-
+        
     }
 
     /*
@@ -16,10 +16,6 @@ namespace Novl{
        Manually order-controlling is needed for now
     */
     void NovlEditor::init(){
-        // init runtime
-        NovlRuntime::Get();
-        EDITOR_ASSERT(NovlRuntime::Get().getWindow().getNativeWindow() != nullptr, "Native window init failed!");
-        
         // init data manager
         EditorDataManager::Get();
 
@@ -32,21 +28,16 @@ namespace Novl{
         // clear Editor GUI
         m_GUI->clear();
         m_GUI.reset();
-
-        // close runtime
-        NovlRuntime::Get().shutdown();
     }   
 
 
     void NovlEditor::update(){
-        // Runtime tick logic & render
-        NovlRuntime::Get().tick();
+        NovlApp::update();
 
         // update & draw Editor GUI
         m_GUI->update();
         m_GUI->draw();
 
-        // swap window buffer
-        NovlRuntime::Get().flush();
+        NovlApp::flush();
     }
 }

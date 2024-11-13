@@ -11,7 +11,6 @@ namespace Novl{
 
         inline uint32_t getWidth() const override { return m_data.width; }
         inline uint32_t getHeight() const override { return m_data.height; }
-        void* getNativeWindow() const override { return static_cast<void*>(m_window);}
 
         inline bool isVSync() const override { return m_isVSync; }
         bool isClose() const override;
@@ -23,6 +22,7 @@ namespace Novl{
         void update() override;
         void endFrame() override;
         inline void setVSync(bool enabled) override;
+        void* getNativeWindow() const override { return static_cast<void*>(m_window);}
 
     private:
         bool        m_isVSync;

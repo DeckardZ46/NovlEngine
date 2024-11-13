@@ -12,7 +12,6 @@
 #include <spdlog/spdlog.h>
 
 #include <Core/Types.h>
-#include <RuntimeCommon.h>
 
 namespace Novl {
 

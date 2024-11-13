@@ -35,3 +35,9 @@
     又做了一个尝试：把imgui render backend的init放在runtime中，把context相关的放在editor中，但是render backend也需要imgui的context，找不到context了
     好的，这就是dll跨边界的大坑，解决方式就是不用dll
     从此改为static lib，已老实，编出来exe大点就大点吧
+
+<2024.11.14>
+    本来准备让NovlEditor继承自一个NovlApp，然后NovlApp只要是Runtime的friend class就可以了，但是C++学差了，继承没法继承父类的friend资格，runtime的friend只有NovlApp的话NovlEditor将并不是friend
+    然后就是不知道window/render/physics/file等等这些manager或者说system该在哪里维护，是作为NovlRuntime的一个成员？还是自己成为一个单例？还是定义一个extern全局变量？还是有一个全局的context来保存和维护（就像Piccolo那样）？
+    没想好，暂时是NovlRuntime里持有指向这些system实例的指针，感觉奥卡姆剃刀一下吧，没必要就不过度设计？
+    后来还是加了一层NovlApp，这样规整一些

@@ -61,8 +61,8 @@ ConsolePanel::ConsolePanel(n_string &&name) : PanelBase(std::move(name)) {
     ELOGD("Initializing console panel...");
     m_panelWidth = 1000.0f;
     m_panelHeight = 200.0f;
-    m_windowWidth = NovlRuntime::Get().getWindowWidth();
-    m_windowHeight = NovlRuntime::Get().getWindowHeight();
+    m_windowWidth = NovlRuntime::Get().getWindow().getWidth();
+    m_windowHeight = NovlRuntime::Get().getWindow().getHeight();
     memset(m_inputBuf, 0, sizeof(m_inputBuf));
 }
 

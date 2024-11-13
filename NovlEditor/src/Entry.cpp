@@ -20,7 +20,7 @@ int main() {
 #endif
     Novl::NovlEditor editor;
     editor.init();
-    while (!Novl::NovlRuntime::Get().isWindowClose()) {
+    while (!Novl::NovlRuntime::Get().getWindow().isClose()) {
         editor.update();
     }
     editor.close();

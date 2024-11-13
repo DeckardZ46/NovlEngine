@@ -1,8 +1,8 @@
 /** 
- * < Novl Engine > RuntimeCommon.h
+ * < Novl Engine > Common.h
  * Author: DeckardZ46
  * Date: 2024/07/10
- * Note: This is common settings for Novl Engine Runtime
+ * Note: This is common settings for Novl Engine
  * Codebase: https://github.com/DeckardZ46/NovlEngine
 */
 
