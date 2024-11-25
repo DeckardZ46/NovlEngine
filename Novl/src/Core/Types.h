@@ -7,9 +7,10 @@
  */
 #pragma once
 
-#include <vector>
 #include <memory>
 #include <mutex>
+#include <vector>
+#include <unordered_map>
 
 #include <Core/Containers/CircularQueue.hpp>
 
@@ -27,8 +28,11 @@ namespace Novl{
     template<typename T>
     using n_vector  = std::vector<T>;
 
+    template<typename k, typename v, typename hash = std::hash<k>>
+    using n_hashmap = std::unordered_map<k, v, hash>;
+
     template<typename T>
-    using n_cqueue = CircularQueue<T>;
+    using n_cqueue  = CircularQueue<T>;
 
     // smart pointers 
     template<typename T>

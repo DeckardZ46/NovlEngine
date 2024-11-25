@@ -10,9 +10,18 @@
 #include <chrono>
 #include <sstream>
 
+/**
+ * Time related
+ */
 enum time_type {
     TIME_COMPLETE = 0,
     TIME_NO_DATE
 };
 
 std::string nformat_time(const std::chrono::system_clock::time_point& time_point, time_type type);
+
+/**
+ * Others
+ */
+
+size_t nHashString(std::string str);

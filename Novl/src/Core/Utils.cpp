@@ -19,3 +19,7 @@ std::string nformat_time(const std::chrono::system_clock::time_point& time_point
 
     return oss.str();
 }
+
+size_t nHashString(std::string str){
+    return std::hash<std::string>{}(str);
+}

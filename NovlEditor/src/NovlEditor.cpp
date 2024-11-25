@@ -4,11 +4,11 @@
 
 namespace Novl{
     NovlEditor::NovlEditor(): NovlApp("Novl Editor"){
-        
+        // NovlApp's constructor will be called
     }
 
     NovlEditor::~NovlEditor(){
-        
+        // NovlApp's destructor will be called
     }
 
     /*
@@ -29,7 +29,6 @@ namespace Novl{
         m_GUI->clear();
         m_GUI.reset();
     }   
-
 
     void NovlEditor::update(){
         NovlApp::update();
