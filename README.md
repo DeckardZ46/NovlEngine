@@ -3,7 +3,7 @@
 
 >The goal of this project is to build a light-weight, simple yet feature-complete game engine, might be used for indie game dev in the future
 
-- using xmake as build system
+- xmake as build system
 - ImGui as Editor UI
 
 ## Planned Features (* for optional feature, could be done or not)
