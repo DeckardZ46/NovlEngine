@@ -41,3 +41,7 @@
     然后就是不知道window/render/physics/file等等这些manager或者说system该在哪里维护，是作为NovlRuntime的一个成员？还是自己成为一个单例？还是定义一个extern全局变量？还是有一个全局的context来保存和维护（就像Piccolo那样）？
     没想好，暂时是NovlRuntime里持有指向这些system实例的指针，感觉奥卡姆剃刀一下吧，没必要就不过度设计？
     后来还是加了一层NovlApp，这样规整一些
+
+<2025.03.22>
+    前段时间一直在忙跳槽找工作的事情，总之是又稳定下来了，在芯片厂做引擎开发，还是很不错的工作
+    接下来就要继续Novl Engine了，好久不更新了
