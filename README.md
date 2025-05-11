@@ -8,15 +8,14 @@
 
 ## Planned Features (* for optional feature, could be done or not)
 - cross platform RHI 
-- hybrid ECS  
 - frame graph  
-- job system *  
 - physics system  
 - animation system  
 - sound system  
 - resource importer (gltf or fbx or USD)  
-- clustered forward pipeline *  
-- inspector & Hierarchy tab & resource panel in Editor  
+- inspector & Hierarchy tab & resource panel in Editor
+- job system *
+- hybrid ECS
 - material manager & cross-platform shader *  
-- C# as script language / blueprint-like visual editor *  
+- TypeScript as script language / blueprint-like visual editor *  
 - shader graph *  
