@@ -52,11 +52,11 @@ void WindowsWindow::init() {
 }
 
 void WindowsWindow::shutdown() {
-    // Destroy all windows
+    // destroy all windows
     glfwDestroyWindow(m_window);
     m_window = nullptr;
 
-    // Terminate glfw program
+    // terminate glfw program
     glfwTerminate();
 }
 

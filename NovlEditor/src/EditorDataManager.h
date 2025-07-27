@@ -30,6 +30,6 @@ class EditorDataManager {
     }
 
   private:
-    n_sptr<n_cqueue<log_item>> m_logMsgs;
+    n_sptr<n_cqueue_safe<log_item>> m_logMsgs;
 };
 } // namespace Novl

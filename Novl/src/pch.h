@@ -14,7 +14,7 @@
 #include <algorithm>
 
 /**
- *  Inside Project
+ *  inside project
  */
 #include <Common.h>
 #include <Core/Types.h>

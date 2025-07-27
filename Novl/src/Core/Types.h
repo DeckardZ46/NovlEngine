@@ -47,4 +47,8 @@ template <typename T, typename... Args> n_uptr<T> make_unique(Args &&...args) {
 template <typename T, typename... Args> n_sptr<T> make_shared(Args &&...args) {
     return std::make_shared<T>(std::forward<Args>(args)...);
 }
+
+// atomic
+template <typename T> using n_atomic = std::atomic<T>;
+
 } // namespace Novl

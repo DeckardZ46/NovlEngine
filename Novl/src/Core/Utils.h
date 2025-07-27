@@ -11,7 +11,7 @@
 #include <sstream>
 
 /**
- * Time related
+ * time related
  */
 enum time_type {
     TIME_COMPLETE = 0,
@@ -21,6 +21,6 @@ enum time_type {
 std::string nformat_time(const std::chrono::system_clock::time_point& time_point, time_type type);
 
 /**
- * Others
+ * others
  */
 size_t nHashString(std::string str);

@@ -19,7 +19,7 @@ namespace Novl {
 				:title(title),width(width),height(height){}
 	};
 
-	// Desktop WindowBase
+	// desktop windowBase
 	class WindowBase {
 		friend class NovlRuntime;
 	public:

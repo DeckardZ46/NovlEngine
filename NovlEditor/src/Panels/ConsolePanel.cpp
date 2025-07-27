@@ -22,7 +22,7 @@ void AddLog();
 void AddCmd(n_string cmd, ...);
 static int TextEditCallback(ImGuiInputTextCallbackData *data);
 
-// Portable helpers
+// portable helpers
 static int Stricmp(const char *s1, const char *s2) {
     int d;
     while ((d = toupper(*s2) - toupper(*s1)) == 0 && *s1) {

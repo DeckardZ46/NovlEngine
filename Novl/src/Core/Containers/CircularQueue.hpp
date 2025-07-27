@@ -53,7 +53,7 @@ template <typename T> class CircularQueue {
         return true;
     }
 
-    // Avoid using it as possible as you can, if you have to use it, BE CAUTION.
+    // avoid using it as possible as you can, if you have to use it, BE CAUTION.
     void forceEnqueue(const T &value) {
         if (isFull()) {
             dequeue();
@@ -99,7 +99,7 @@ template <typename T> class CircularQueue {
         count = 0;
     }
 
-    // Erase the queue and deallocate memory
+    // erase the queue and deallocate memory
     void erase() {
         if (array) {
             delete[] array;
@@ -164,14 +164,14 @@ template <typename T> class CircularQueue {
     }
 };
 
-// Thread-safe circular queue
+// thread-safe circular queue
 template <typename T> class SafeCircularQueue : public CircularQueue<T> {
   private:
     mutable std::mutex mtx; 
 
   public:
     SafeCircularQueue(size_t size) : CircularQueue<T>(size) {
-        // Nothing to do here
+        // nothing to do here
     }
 
     ~SafeCircularQueue() {

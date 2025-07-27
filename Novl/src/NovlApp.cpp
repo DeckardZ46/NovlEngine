@@ -13,7 +13,7 @@ NovlApp::~NovlApp(){
 }
 
 void NovlApp::update(){
-    // Runtime tick logic & render
+    // runtime tick logic & render
     NovlRuntime::Get().tick();
 }
 
