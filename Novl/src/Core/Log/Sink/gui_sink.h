@@ -56,10 +56,10 @@ template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex
     n_sptr<n_cqueue<log_item>> messages;
 };
 
-typedef n_sptr<gui_sink<n_mutex>> gui_sink_mt_t;
+typedef n_sptr<gui_sink<n_lock>> gui_sink_mt_t;
 
 inline const gui_sink_mt_t gui_sink_mt(n_sptr<n_cqueue<log_item>> target) {
-    return std::make_shared<gui_sink<n_mutex>>(std::move(target));
+    return std::make_shared<gui_sink<n_lock>>(std::move(target));
 }
 
 } // namespace Novl

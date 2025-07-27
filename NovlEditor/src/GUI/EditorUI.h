@@ -7,19 +7,19 @@
  */
 #pragma once
 
-namespace Novl{
-    class PanelBase;
-    class EditorUI {
-    public:
-        EditorUI();
-        ~EditorUI();
+namespace Novl {
+class PanelBase;
+class EditorUI {
+  public:
+    EditorUI();
+    ~EditorUI();
 
-        void init();
-        void clear();
-        void update();
-        void draw();
+    void init();
+    void clear();
+    void update();
+    void draw();
 
-    private:
-        n_vector<PanelBase*> m_panels;
-    };
-}
+  private:
+    n_vector<PanelBase *> m_panels;
+};
+} // namespace Novl

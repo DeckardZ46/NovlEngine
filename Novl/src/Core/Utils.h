@@ -23,5 +23,4 @@ std::string nformat_time(const std::chrono::system_clock::time_point& time_point
 /**
  * Others
  */
-
 size_t nHashString(std::string str);

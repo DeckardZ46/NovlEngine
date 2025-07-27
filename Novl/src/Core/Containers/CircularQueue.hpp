@@ -11,6 +11,9 @@ namespace Novl {
 // It is NOT thread safe!
 template <typename T> class CircularQueue {
   private:
+    /**
+     * Private members
+     */
     T *array;
     size_t front;
     size_t rear;
@@ -18,12 +21,15 @@ template <typename T> class CircularQueue {
     size_t count;
 
   public:
+    /**
+     * Public functions
+     */
     CircularQueue(size_t size) : maxSize(size + 1), front(0), rear(0), count(0) {
         array = new T[maxSize];
     }
 
     ~CircularQueue() {
-        delete[] array;
+        erase();
     }
 
     // check if the queue is empty
@@ -47,7 +53,7 @@ template <typename T> class CircularQueue {
         return true;
     }
 
-    // Try avoiding using it, if have to use it, BE CAUTION.
+    // Avoid using it as possible as you can, if you have to use it, BE CAUTION.
     void forceEnqueue(const T &value) {
         if (isFull()) {
             dequeue();
@@ -88,18 +94,20 @@ template <typename T> class CircularQueue {
     }
 
     // clear the queue, but it won't free memory usage
-    void Clear() {
+    void clear() {
         front = rear = 0;
         count = 0;
     }
 
     // Erase the queue and deallocate memory
-    void Erase() {
-        delete[] array;
-        array = nullptr;
-        maxSize = 0;
-        front = rear = 0;
-        count = 0;
+    void erase() {
+        if (array) {
+            delete[] array;
+            array = nullptr;
+            maxSize = 0;
+            front = rear = 0;
+            count = 0;
+        }
     }
 
     // iterator for circular queue
@@ -116,9 +124,30 @@ template <typename T> class CircularQueue {
             return q->array[(index + q->front) % q->maxSize];
         }
 
+        T *operator->() {
+            return &q->array[(index + q->front) % q->maxSize];
+        }
+
         iterator &operator++() {
             index++;
             return *this;
+        }
+
+        iterator operator++(int) {
+            iterator temp = *this;
+            ++(*this);
+            return temp;
+        }
+
+        iterator &operator--() {
+            index--;
+            return *this;
+        }
+
+        iterator operator--(int) {
+            iterator temp = *this;
+            --(*this);
+            return temp;
         }
 
         bool operator!=(const iterator &other) const {
@@ -134,4 +163,40 @@ template <typename T> class CircularQueue {
         return iterator(this, count);
     }
 };
+
+// Thread-safe circular queue
+template <typename T> class SafeCircularQueue : public CircularQueue<T> {
+  private:
+    mutable std::mutex mtx; 
+
+  public:
+    SafeCircularQueue(size_t size) : CircularQueue<T>(size) {
+        // Nothing to do here
+    }
+
+    ~SafeCircularQueue() {
+        std::lock_guard<std::mutex> lock(mtx);
+    }
+
+    bool enqueue(const T &value) {
+        std::lock_guard<std::mutex> lock(mtx);
+        return CircularQueue<T>::enqueue(value);
+    }
+
+    std::optional<T> dequeue() {
+        std::lock_guard<std::mutex> lock(mtx);
+        return CircularQueue<T>::dequeue();
+    }
+
+    void clear() {
+        std::lock_guard<std::mutex> lock(mtx);
+        CircularQueue<T>::Clear();
+    }
+
+    void erase() {
+        std::lock_guard<std::mutex> lock(mtx);
+        CircularQueue<T>::Erase();
+    }
+};
+
 } // namespace Novl

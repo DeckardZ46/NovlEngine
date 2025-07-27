@@ -11,6 +11,8 @@
 namespace Novl {
 class NovlRuntime {
     friend class NovlApp;
+    friend class EditorUI;
+
   private:
     NovlRuntime();
     NovlRuntime(const NovlRuntime &) = delete;
@@ -33,9 +35,6 @@ class NovlRuntime {
     inline WindowBase &getWindow() const {
         return *m_window;
     }
-    inline void* getNativeWindow() {
-        return m_window->getNativeWindow();
-    }
 
   private:
     /**
@@ -46,6 +45,11 @@ class NovlRuntime {
 
     void tick();
     void flush();
+
+    // window system
+    inline void *getNativeWindow() {
+        return m_window->getNativeWindow();
+    }
 
   private:
     /**

@@ -294,7 +294,7 @@ int ConsolePanel::TextEditCallbackImpl(ImGuiInputTextCallbackData *data) {
  * Util Implementations
  */
 void ClearLog() {
-    EditorDataManager::Get().getLogContainer()->Clear();
+    EditorDataManager::Get().getLogContainer()->clear();
 }
 
 void AddLog() {
