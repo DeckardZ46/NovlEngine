@@ -13,10 +13,10 @@
 
 namespace Novl {
 // sink bitmask
-const char ConsoleSink = 1 << 0; // 0001
-const char UISink = 1 << 1;      // 0010
-const char FileSink = 1 << 2;    // 0100
-const char NoneSink = 1 << 3;    // 1000
+const char ConsoleSink  = 1 << 0; // 0001
+const char UISink       = 1 << 1; // 0010
+const char FileSink     = 1 << 2; // 0100
+const char NoneSink     = 1 << 3; // 1000
 
 using log_sink = std::shared_ptr<spdlog::sinks::sink>;
 

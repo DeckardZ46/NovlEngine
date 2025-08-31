@@ -1,6 +1,5 @@
 # Todo List
 - Event System
-- Layer
 - Runtime & Editor hello world
 
 # Further Features (* for optional featur, could be done or not)

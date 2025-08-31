@@ -48,7 +48,7 @@ void WindowsWindow::init() {
 
     // set callback funtions
     glfwSetWindowUserPointer(m_window, &m_data);
-    glfwSetFramebufferSizeCallback(m_window, FramebufferSizeChange_cb);
+    setWindowCallBack();
 }
 
 void WindowsWindow::shutdown() {
@@ -79,6 +79,52 @@ void WindowsWindow::setVSync(bool enabled) {
         glfwSwapInterval(0);
         m_isVSync = false;
     }
+}
+
+void WindowsWindow::setWindowCallBack() {
+
+    glfwSetFramebufferSizeCallback(m_window, FramebufferSizeChange_cb);
+    
+    glfwSetWindowSizeCallback(m_window, [](GLFWwindow *window, int width, int height) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+        data.width = width;
+        data.height = height;
+
+        NLOGI("window size CB");
+    });
+
+    glfwSetWindowCloseCallback(m_window, [](GLFWwindow *window) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+        NLOGI("window close CB");
+    });
+
+    glfwSetKeyCallback(m_window, [](GLFWwindow *window, int key, int scancode, int action, int mods) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+        NLOGI("key CB");
+    });
+
+    glfwSetCharCallback(m_window, [](GLFWwindow *window, unsigned int c) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+        
+        NLOGI("Char CB");
+    });
+
+    glfwSetMouseButtonCallback(m_window, [](GLFWwindow *window, int button, int action, int mods) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+
+        NLOGI("Mouse Button CB");
+    });
+
+    glfwSetScrollCallback(m_window, [](GLFWwindow *window, double xOffset, double yOffset) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+
+        NLOGI("Scroll CB");
+    });
+
+    glfwSetCursorPosCallback(m_window, [](GLFWwindow *window, double xPos, double yPos) {
+        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
+        NLOGI("CursorPos CB");
+    });
 }
 
 bool WindowsWindow::isClose() const {

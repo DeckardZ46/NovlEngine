@@ -36,6 +36,7 @@ namespace Novl {
 		virtual void endFrame() = 0;
 		virtual void setVSync(bool enabled) = 0;
 		virtual void* getNativeWindow() const = 0;
+		virtual void setWindowCallBack() = 0;
 
 		static WindowBase* Create(const WindowData& wdata = WindowData());
 	};

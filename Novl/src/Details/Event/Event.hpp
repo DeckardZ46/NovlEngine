@@ -8,40 +8,30 @@
 #pragma once 
 
 namespace Novl{
-class EventDispatcher {
-    template<typename... Args>
-    using EventHandler = std::function<bool(Args...)>;
-public:
-    EventDispatcher();
-    ~EventDispatcher();
+// An event system for Novl Engine
+class Event{
+public: 
+    Event() = default;
+    virtual ~Event() = default;
 
-    template<typename... Args>
-    inline void subscribeEvent(n_string event_str, EventHandler<Args...> handler){
-        size_t eventID = nHashString(event_str);
-        m_eventHandlers<Args...>[eventID] = handler;
+    // event type
+    enum class Type{
+        None = 0,
+        WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
+        AppTick, AppUpdate, AppRender,
+        KeyPressed, KeyReleased, KeyTyped,
+        MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+    };
+
+    virtual Type getEventType() const = 0;
+    virtual const char* getName() const = 0;
+    virtual int getCategoryFlags() const = 0;
+    virtual n_string toString() const { return getName(); }
+
+    inline bool isInCategory(int category){
+        return getCategoryFlags() & category;
     }
 
-    template<typename... Args>
-    inline void unsubscribeEvent(n_string event_str){
-        size_t eventID = nHashString(event_str);
-        m_eventHandlers<Args...>.erase(eventID);
-    }
-
-    template<typename... Args>
-    inline bool checkAndHandleEvent(n_string event_str,Args&& ...args){
-        size_t eventID = nHashString(event_str);
-        auto it = m_eventHandlers<Args...>.find(eventID);
-
-        if(it != m_eventHandlers<Args...>.end()){
-            it->second(std::forward<Args>(args)...);
-            return true;
-        }
-
-        return false;
-    }
-
-private:
-    template<typename... Args>
-    n_hashmap<size_t,EventHandler<Args...>> m_eventHandlers;
+    bool handled = false; // whether the event has been handled
 };
 } // namespace Novl

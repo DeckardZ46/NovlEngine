@@ -10,6 +10,7 @@
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <cstdint>
 #include <unordered_map>
 
 #include <Core/Containers/CircularQueue.hpp>
@@ -19,10 +20,13 @@
  */
 namespace Novl {
 // types
-using n_string = std::string;
-using n_lock = std::mutex;
-using n_float = float;
-using n_floatL = double;
+using n_string  = std::string;
+using float64   = double;
+using uint      = unsigned int;
+using uint8     = std::uint8_t;
+using uint16    = std::uint16_t;
+using uint32    = std::uint32_t;
+using uint64    = std::uint64_t;
 
 // containers
 template <typename T> using n_vector = std::vector<T>;

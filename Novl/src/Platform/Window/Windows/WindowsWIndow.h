@@ -30,6 +30,7 @@ class WindowsWindow final : public WindowBase {
     void *getNativeWindow() const override {
         return static_cast<void *>(m_window);
     }
+    void setWindowCallBack();
 
   private:
     bool m_isVSync;

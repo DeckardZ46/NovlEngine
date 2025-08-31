@@ -19,23 +19,23 @@ class PanelBase {
     virtual void update() = 0;
     virtual void draw() = 0;
 
-    inline n_float getWidth() const {
+    inline float getWidth() const {
         return m_panelWidth;
     }
-    inline void setWidth(n_float width) {
+    inline void setWidth(float width) {
         m_panelWidth = width;
     }
-    inline n_float getHeight() const {
+    inline float getHeight() const {
         return m_panelHeight;
     }
-    inline void setHeight(n_float height) {
+    inline void setHeight(float height) {
         m_panelHeight = height;
     }
 
   protected:
     n_string m_panelName;
-    n_float m_panelWidth;
-    n_float m_panelHeight;
+    float m_panelWidth;
+    float m_panelHeight;
 };
 
 } // namespace Novl

@@ -111,6 +111,7 @@ template <typename T> class CircularQueue {
     }
 
     // iterator for circular queue
+    // not thread-safe
     class iterator {
       private:
         CircularQueue *q;
