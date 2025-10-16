@@ -16,7 +16,7 @@
 
 int main() {
 #ifdef NOVL_PLAT_WINDOWS
-    // FreeConsole();
+    FreeConsole();
 #endif
     Novl::NovlEditor editor;
     editor.init();

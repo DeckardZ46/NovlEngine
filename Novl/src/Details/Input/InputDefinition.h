@@ -15,7 +15,5 @@ enum class InputCategory : uint16 {
     WindowInput         = 1 << 3
 };
 
-class NovlInput {
-    
-};
+
 } // namespace Novl

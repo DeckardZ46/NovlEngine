@@ -9,7 +9,8 @@
 
 namespace Novl {
 // It is NOT thread safe!
-template <typename T> class CircularQueue {
+template <typename T> 
+class CircularQueue {
   private:
     /**
      * Private members
@@ -166,7 +167,8 @@ template <typename T> class CircularQueue {
 };
 
 // thread-safe circular queue
-template <typename T> class SafeCircularQueue : public CircularQueue<T> {
+template <typename T> 
+class SafeCircularQueue : public CircularQueue<T> {
   private:
     mutable std::mutex mtx; 
 
