@@ -6,7 +6,8 @@
  * Codebase: https://github.com/DeckardZ46/NovlEngine
  */
 #pragma once
-#include <Details/Window/NovlWindow.h>
+#include "Core/Input/InputManager.h"
+#include "Details/Window/NovlWindow.h"
 
 namespace Novl {
 class NovlRuntime {

@@ -20,7 +20,7 @@
  */
 namespace Novl {
 // types
-using n_string  = std::string;
+using string    = std::string;
 using float64   = double;
 using uint      = unsigned int;
 using uint8     = std::uint8_t;

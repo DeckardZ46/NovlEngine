@@ -11,13 +11,13 @@
 namespace Novl{
 class NovlApp {
 public:
-    NovlApp(n_string name = "Novl App");
+    NovlApp(string name = "Novl App");
     virtual ~NovlApp();
 
     virtual void update();
     virtual void flush();
 
 protected:
-    n_string m_name;
+    string m_name;
 };
 } // namespace Novl

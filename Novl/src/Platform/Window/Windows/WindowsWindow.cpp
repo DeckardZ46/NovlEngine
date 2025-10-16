@@ -1,5 +1,8 @@
+﻿#pragma comment(lib, "Shcore.lib")   // 链接库
 #include <pch.h>
 #include <glad.h>
+#include <shellscalingapi.h>   // 头文件
+#include "Novl.h"
 #include "WindowsWindow.h"
 
 namespace Novl {
@@ -41,6 +44,7 @@ void WindowsWindow::init() {
     NOVL_ASSERT(m_window != nullptr, "Failed to create glfw window!");
     glfwMakeContextCurrent(m_window);
     setVSync(true);
+    hwnd = glfwGetWin32Window(m_window);
 
     // init OpenGL
     int stat = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -49,6 +53,13 @@ void WindowsWindow::init() {
     // set callback funtions
     glfwSetWindowUserPointer(m_window, &m_data);
     setWindowCallBack();
+
+    // calculate dpi scale
+    uint dpi = GetDpiForWindow(hwnd);
+    m_dpiScale = dpi / 96.0f;
+    int logicW = static_cast<int>(m_data.width * m_dpiScale);
+    int logicH = static_cast<int>(m_data.height * m_dpiScale);
+    glfwSetWindowSize(m_window,logicW,logicH);
 }
 
 void WindowsWindow::shutdown() {

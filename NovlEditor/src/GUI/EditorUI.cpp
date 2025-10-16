@@ -22,9 +22,14 @@ EditorUI::EditorUI() {
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
         ImGui::StyleColorsDark();
-        io.Fonts->AddFontFromFileTTF("../../../../Assets/Fonts/Cousine-Regular.ttf", 14);
+        float dpiscale = NovlRuntime::Get().getWindow().getDPIScale();
+        io.Fonts->AddFontFromFileTTF("../../../../Assets/Fonts/Cousine-Regular.ttf", 16 * dpiscale);
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
+
+        ImGuiStyle& style = ImGui::GetStyle();
+        style = ImGuiStyle();
+        style.ScaleAllSizes(dpiscale);
     }
 
     /**
@@ -42,6 +47,8 @@ EditorUI::EditorUI() {
 
     // other platforms
     // ...
+
+    // init font
 }
 
 EditorUI::~EditorUI() {

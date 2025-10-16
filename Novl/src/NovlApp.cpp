@@ -2,7 +2,7 @@
 #include <NovlApp.h>
 
 namespace Novl{
-NovlApp::NovlApp(n_string name): m_name(name){
+NovlApp::NovlApp(string name): m_name(name){
     // init runtime
     NovlRuntime::Get();
 }

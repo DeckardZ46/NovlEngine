@@ -9,11 +9,11 @@
 
 namespace Novl {
 	struct WindowData {
-		n_string title;
+		string title;
 		uint32_t width;
 		uint32_t height;
 
-		WindowData( const n_string& title = "Novl Engine",
+		WindowData( const string& title = "Novl Engine",
 					uint32_t width = 1280,
 					uint32_t height = 720)
 				:title(title),width(width),height(height){}
@@ -31,6 +31,8 @@ namespace Novl {
 		virtual bool isVSync() const = 0;
 		virtual bool isClose() const = 0;
 
+		float getDPIScale() const { return m_dpiScale; }
+
 	protected:
 		virtual void update() = 0;
 		virtual void endFrame() = 0;
@@ -39,6 +41,8 @@ namespace Novl {
 		virtual void setWindowCallBack() = 0;
 
 		static WindowBase* Create(const WindowData& wdata = WindowData());
+
+		float m_dpiScale = 1.0f;
 	};
 
 }

@@ -19,7 +19,7 @@ const ImColor CMD_CLR{0.71f, 0.745f, 0.92f, 1.0f};
 
 void ClearLog();
 void AddLog();
-void AddCmd(n_string cmd, ...);
+void AddCmd(string cmd, ...);
 static int TextEditCallback(ImGuiInputTextCallbackData *data);
 
 // portable helpers
@@ -57,10 +57,11 @@ static void Strtrim(char *s) {
 /**
  * Console Panel Members
  */
-ConsolePanel::ConsolePanel(n_string &&name) : PanelBase(std::move(name)) {
+ConsolePanel::ConsolePanel(string &&name) : PanelBase(std::move(name)) {
     ELOGD("Initializing console panel...");
-    m_panelWidth = 1000.0f;
-    m_panelHeight = 200.0f;
+    float dpiscale = NovlRuntime::Get().getWindow().getDPIScale();
+    m_panelWidth = 1000.0f * dpiscale;
+    m_panelHeight = 200.0f * dpiscale;
     m_windowWidth = NovlRuntime::Get().getWindow().getWidth();
     m_windowHeight = NovlRuntime::Get().getWindow().getHeight();
     memset(m_inputBuf, 0, sizeof(m_inputBuf));
@@ -219,7 +220,7 @@ void ConsolePanel::draw() {
         if (s[0]) {
             // TODO:
             // ExecCommand(s);
-            AddCmd(n_string(s));
+            AddCmd(string(s));
         }
         strcpy(s, "");
         reclaim_focus = true;
@@ -301,7 +302,7 @@ void AddLog() {
     ELOGI("Added default log.");
 }
 
-void AddCmd(n_string cmd, ...) {
+void AddCmd(string cmd, ...) {
     log_item it{.isCmd = true, .msg = cmd, .logger = "", .time = std::chrono::system_clock::now(), .level = LEVEL::off};
     EditorDataManager::Get().getLogContainer()->forceEnqueue(std::move(it));
 }

@@ -1,6 +1,9 @@
 #pragma once
+#define GLFW_EXPOSE_NATIVE_WIN32
+
 #include <Details/Window/NovlWindow.h>
 #include <glfw3.h>
+#include <glfw3native.h>
 
 namespace Novl {
 class WindowsWindow final : public WindowBase {
@@ -36,5 +39,6 @@ class WindowsWindow final : public WindowBase {
     bool m_isVSync;
     GLFWwindow *m_window;
     WindowData m_data;
+    HWND hwnd;
 };
 } // namespace Novl

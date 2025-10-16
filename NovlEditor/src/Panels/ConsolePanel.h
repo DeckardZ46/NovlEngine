@@ -18,7 +18,7 @@
 namespace Novl{
 class ConsolePanel :public PanelBase {
 public:
-    ConsolePanel(n_string &&name);
+    ConsolePanel(string &&name);
     ~ConsolePanel();
 
     void update() override;

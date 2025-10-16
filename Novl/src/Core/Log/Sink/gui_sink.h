@@ -17,8 +17,8 @@ namespace Novl {
 
 struct log_item {
     bool isCmd = false;
-    n_string msg;
-    n_string logger;
+    string msg;
+    string logger;
     spdlog::log_clock::time_point time;
     spdlog::level::level_enum level;
 };
@@ -41,8 +41,8 @@ template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex
             messages->dequeue();
         }
         log_item it;
-        it.msg = n_string(msg.payload.data(), msg.payload.size());
-        it.logger = n_string(msg.logger_name.data(), msg.logger_name.size());
+        it.msg = string(msg.payload.data(), msg.payload.size());
+        it.logger = string(msg.logger_name.data(), msg.logger_name.size());
         it.level = msg.level;
         it.time = msg.time;
         messages->forceEnqueue(std::move(it));

@@ -11,7 +11,7 @@
 namespace Novl {
 class PanelBase {
   public:
-    PanelBase(n_string &&name) : m_panelName(std::move(name)) {
+    PanelBase(string &&name) : m_panelName(std::move(name)) {
     }
     virtual ~PanelBase() {
     }
@@ -33,7 +33,7 @@ class PanelBase {
     }
 
   protected:
-    n_string m_panelName;
+    string m_panelName;
     float m_panelWidth;
     float m_panelHeight;
 };
