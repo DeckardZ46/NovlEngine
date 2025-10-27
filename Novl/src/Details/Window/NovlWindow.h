@@ -34,6 +34,8 @@ namespace Novl {
 		float getDPIScale() const { return m_dpiScale; }
 
 	protected:
+		virtual void init() = 0;
+		virtual void shutdown() = 0;	
 		virtual void update() = 0;
 		virtual void endFrame() = 0;
 		virtual void setVSync(bool enabled) = 0;

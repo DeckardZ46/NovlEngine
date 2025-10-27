@@ -32,6 +32,11 @@ class NovlRuntime {
         return s_Runtime;
     }
 
+    // input system
+    inline InputManager &getInputManager() const {
+        return *m_inputManager;
+    }
+
     // window system
     inline WindowBase &getWindow() const {
         return *m_window;
@@ -60,6 +65,7 @@ class NovlRuntime {
     bool m_initialized = false;
 
     // managers & systems
+    n_uptr<InputManager> m_inputManager;
     n_uptr<WindowBase> m_window;
 };
 } // namespace Novl

@@ -9,7 +9,6 @@
 /**
  *  STL 
  */
-#include <string>
 #include <functional>
 #include <algorithm>
 

@@ -7,6 +7,8 @@
  */
 #pragma once
 
+#define MAX_MOUSEBUTTON_COUNT 8
+
 namespace Novl {
 enum class NovlMouseButton : uint8 {
     AnyMouseButton  = 0,

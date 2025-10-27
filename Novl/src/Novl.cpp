@@ -18,8 +18,14 @@ void NovlRuntime::init() {
     Log::Init();
     NLOGD("Initializing Novl Runtime...");
 
+    // init input
+    m_inputManager = n_uptr<InputManager>(new InputManager());
+    m_inputManager->init();
+
     // init window
     m_window = n_uptr<WindowBase>(WindowBase::Create());
+    m_window->init();
+
     m_initialized = true;
 
     return;

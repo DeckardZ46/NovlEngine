@@ -7,11 +7,14 @@
  */
 #pragma once
 
+#define MAX_KEYCODE_COUNT 128
+
 namespace Novl {
 /**
  * here we use USB HID Usage ID as keycode
  * reference: https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf
  */
+
 enum class NovlKeyCode : uint16 {
     AnyKey = 0x00,
 
@@ -104,7 +107,5 @@ enum class NovlKeyCode : uint16 {
     UpArrow         = 0x52,
     NumLock         = 0x53
 };
-
-// Key event struct
 
 } // namespace Novl

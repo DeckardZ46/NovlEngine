@@ -1,9 +1,9 @@
-﻿#pragma comment(lib, "Shcore.lib")   // 链接库
-#include <pch.h>
+﻿#include <pch.h>
 #include <glad.h>
-#include <shellscalingapi.h>   // 头文件
 #include "Novl.h"
 #include "WindowsWindow.h"
+#include "Core/Input/glfw/KeyMapGLFW.h"
+#include "Core/Input/glfw/MouseMapGLFW.h"
 
 namespace Novl {
 static bool s_glfwInit = false;
@@ -15,8 +15,7 @@ static void GLFWErrorCallback(int error, const char *description) {
 void FramebufferSizeChange_cb(GLFWwindow *window, int width, int height);
 
 WindowsWindow::WindowsWindow(const WindowData &wdata) : m_data(wdata) {
-    // RAII
-    init();
+    // nothing to do
 }
 
 WindowsWindow::~WindowsWindow() {
@@ -59,7 +58,7 @@ void WindowsWindow::init() {
     m_dpiScale = dpi / 96.0f;
     int logicW = static_cast<int>(m_data.width * m_dpiScale);
     int logicH = static_cast<int>(m_data.height * m_dpiScale);
-    glfwSetWindowSize(m_window,logicW,logicH);
+    glfwSetWindowSize(m_window, logicW, logicH);
 }
 
 void WindowsWindow::shutdown() {
@@ -95,7 +94,7 @@ void WindowsWindow::setVSync(bool enabled) {
 void WindowsWindow::setWindowCallBack() {
 
     glfwSetFramebufferSizeCallback(m_window, FramebufferSizeChange_cb);
-    
+
     glfwSetWindowSizeCallback(m_window, [](GLFWwindow *window, int width, int height) {
         WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
         data.width = width;
@@ -110,31 +109,44 @@ void WindowsWindow::setWindowCallBack() {
     });
 
     glfwSetKeyCallback(m_window, [](GLFWwindow *window, int key, int scancode, int action, int mods) {
-        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
-        NLOGI("key CB");
+        switch (action) {
+        case GLFW_PRESS:
+            NovlRuntime::Get().getInputManager().onKeyPress(GLFWKeyToNovlKeyCode(key));
+            break;
+        case GLFW_RELEASE:
+            NovlRuntime::Get().getInputManager().onKeyRelease(GLFWKeyToNovlKeyCode(key));
+            break;
+        case GLFW_REPEAT:
+            // handle key repeat if needed
+            break;
+        default:
+            break;
+        }
     });
 
     glfwSetCharCallback(m_window, [](GLFWwindow *window, unsigned int c) {
-        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
-        
-        NLOGI("Char CB");
+        // handle character input if needed
     });
 
     glfwSetMouseButtonCallback(m_window, [](GLFWwindow *window, int button, int action, int mods) {
-        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
-
-        NLOGI("Mouse Button CB");
+        switch (action) {
+        case GLFW_PRESS:
+            NovlRuntime::Get().getInputManager().onMouseButtonPress(static_cast<NovlMouseButton>(button));
+            break;
+        case GLFW_RELEASE:
+            NovlRuntime::Get().getInputManager().onMouseButtonRelease(static_cast<NovlMouseButton>(button));
+            break;
+        default:
+            break;
+        }
     });
 
     glfwSetScrollCallback(m_window, [](GLFWwindow *window, double xOffset, double yOffset) {
-        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
-
-        NLOGI("Scroll CB");
+        NovlRuntime::Get().getInputManager().onMouseScroll(static_cast<float>(xOffset), static_cast<float>(yOffset));
     });
 
     glfwSetCursorPosCallback(m_window, [](GLFWwindow *window, double xPos, double yPos) {
-        WindowData &data = *(WindowData *)glfwGetWindowUserPointer(window);
-        NLOGI("CursorPos CB");
+        NovlRuntime::Get().getInputManager().onMouseMove(static_cast<float>(xPos), static_cast<float>(yPos));
     });
 }
 

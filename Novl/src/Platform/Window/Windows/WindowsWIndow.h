@@ -1,9 +1,16 @@
+/**
+ * < Novl Engine > WindowsWindow.h
+ * Author: DeckardZ46
+ * Date: 2024/11/27
+ * Note: Novl Window for Windows platform
+ * Codebase: https://github.com/DeckardZ46/NovlEngine
+ */
 #pragma once
 #define GLFW_EXPOSE_NATIVE_WIN32
 
-#include <Details/Window/NovlWindow.h>
 #include <glfw3.h>
 #include <glfw3native.h>
+#include <Details/Window/NovlWindow.h>
 
 namespace Novl {
 class WindowsWindow final : public WindowBase {

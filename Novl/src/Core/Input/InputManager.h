@@ -10,15 +10,15 @@
 #include "MouseInput.h"
 
 namespace Novl {
-class InputListener {
-public:
-    // InputListener();
-    ~InputListener() = default;
-
-    virtual void OnKey(NovlKeyCode code, bool pressed) {}
-    virtual void OnMouseMove(float x, float y) {}
-    virtual void OnMouseButton(NovlMouseButton btn, bool pressed) {}
-    virtual void OnScroll(float dx, float dy) {}
+struct InputState {
+    bool keys[MAX_KEYCODE_COUNT] = {false};     
+    bool prevKeys[MAX_KEYCODE_COUNT] = {false}; 
+    bool mouseButtons[MAX_MOUSEBUTTON_COUNT] = {false};
+    bool prevMouseButtons[MAX_MOUSEBUTTON_COUNT] = {false};
+    float mouseX = 0;
+    float mouseY = 0;
+    float prevMouseX = 0;
+    float prevMouseY = 0;
 };
 
 class InputManager {
@@ -26,11 +26,18 @@ class InputManager {
     void init();
     void shutdown();
 
-    void AddListener(InputListener *listener);
-    void RemoveListener(InputListener *listener);
+    void update();
+    bool isKeyPressed(NovlKeyCode key);
+    bool isMouseButtonPressed(NovlMouseButton button);
+
+    void onKeyPress(NovlKeyCode key);
+    void onKeyRelease(NovlKeyCode key);
+    void onMouseButtonPress(NovlMouseButton button);
+    void onMouseButtonRelease(NovlMouseButton button);
+    void onMouseMove(float xPos, float yPos);
+    void onMouseScroll(float xOffset, float yOffset);
 
   private:
-    
-    
+    InputState m_inputState;
 };
 } // namespace Novl

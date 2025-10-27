@@ -11,6 +11,7 @@
 #include <mutex>
 #include <vector>
 #include <cstdint>
+#include <string>
 #include <unordered_map>
 
 #include <Core/Containers/CircularQueue.hpp>
