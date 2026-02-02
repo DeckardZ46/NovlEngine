@@ -21,5 +21,3 @@
     #define NOVL_OGL_VER_MAJ 3  
     #define NOVL_OGL_VER_MIN 3  
 #endif
-
-#define MAX_LOG_MSG 1024

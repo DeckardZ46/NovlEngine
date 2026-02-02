@@ -23,6 +23,8 @@ struct InputState {
 
 class InputManager {
   public:
+    InputManager() = default;
+    ~InputManager();
     void init();
     void shutdown();
 

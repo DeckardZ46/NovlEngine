@@ -11,6 +11,8 @@
 #include <spdlog/sinks/base_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
+#define MAX_LOG_MSG 1024
+
 namespace Novl {
 // sink bitmask
 const char ConsoleSink  = 1 << 0; // 0001

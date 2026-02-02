@@ -2,6 +2,10 @@
 #include "InputManager.h"
 
 namespace Novl{
+InputManager::~InputManager() {
+    shutdown();
+}
+
 void InputManager::init() {
     // nothing to do
 }

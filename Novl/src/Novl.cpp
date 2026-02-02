@@ -32,6 +32,9 @@ void NovlRuntime::init() {
 }
 
 void NovlRuntime::shutdown() {
+    // shutdown input system
+    m_inputManager.reset();
+
     // close window
     m_window.reset();
 
